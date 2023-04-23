@@ -1,8 +1,8 @@
-import logo from '../Assets/logo.png'
+import yellow_brand from '../Assets/yellow_brand.png'
 export default function Header(){
     return(
-        <header>
-            <img  src ={logo} alt="logo"/>
+        <header className='d-flex justify-content-center py-3'>
+            <img  src ={yellow_brand} alt="logo"/>
         </header>
     );
 }
