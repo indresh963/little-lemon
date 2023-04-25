@@ -1,5 +1,14 @@
+import Hero from './Hero';
+import Highlight from './Highlight';
+import Testimonial from './Testimonial';
+import Parallax from './Parallax';
 export default function HomePage(){
     return(
-        <h2>Hello</h2>
+        <>
+        <Hero/>
+        <Highlight/>
+        <Parallax/>
+        <Testimonial/>
+        </>
     )
 }

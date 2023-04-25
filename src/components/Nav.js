@@ -1,4 +1,5 @@
 import { Routes, Route, Link } from 'react-router-dom'
+import { useRef, useEffect } from 'react';
 import HomePage from './HomePage';
 import About from './About';
 import Menu from './Menu';
@@ -7,9 +8,20 @@ import Orderonline from './Orderonline';
 import Login from './Login';
 import icon from '../Assets/yellow_monochrome.png'
 export default function Nav() {
+    const navBar = useRef();
+    useEffect(() => {
+        const Scroll = () => {
+            window.scrollY > 20 ?
+                navBar.current.classList.add("shadow") :
+                navBar.current.classList.remove("shadow");
+        }
+        window.addEventListener('scroll',Scroll)
+
+        return () => window.removeEventListener('scroll',Scroll);
+    }, [])
     return (
         <>
-            <nav className='navbar navbar-expand-lg navbar-light bg-white border border-1'>
+            <nav ref={navBar} className='navbar navbar-expand-lg navbar-light bg-white border border-1 sticky-top'>
                 <div className='container'>
                     <img className='navbar-brand img-fluid d-lg-inline d-none' id="brand" src={icon} alt="logo" />
                     <button id="navbar_toggler" className='navbar-toggler' data-bs-toggle="collapse" data-bs-target="#myNav">
@@ -25,9 +37,9 @@ export default function Nav() {
                             <li className='nav-item'><Link className='nav-link' to="/logIn">Login</Link></li>
                         </ul>
                     </div>
-                    <ul className='nav ms-auto align-items-center gap-2'>
-                        <li className='nav-item'><Link className='nav-link active' to="/"><img id="user_img" className='rounded-circle' src={require('../Assets/user.png')} alt="user image"/></Link></li>
-                        <li className='nav-item'><i id="cart" class=" fa-solid fa-cart-shopping"></i></li>
+                    <ul className='nav ms-auto align-items-center gap-2 me-3'>
+                        <li className='nav-item'><Link className='nav-link active' to="/"><img id="user_img" className='rounded-circle' src={require('../Assets/user.png')} alt="user image" /></Link></li>
+                        <li id="cart_parent" className='nav-item pt-2'><i id="cart" class=" fa-solid fa-cart-shopping"></i><p id="cart-counter">87</p></li>
                     </ul>
                 </div>
             </nav>

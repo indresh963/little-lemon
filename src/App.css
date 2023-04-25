@@ -17,51 +17,77 @@ body{
   width:0.7em;
 }
 ::-webkit-scrollbar-thumb{
-  background-image: linear-gradient(180deg,#ffff,var(--secondary-font));
+  background-image: linear-gradient(180deg,#ffff,var(--primary-blue));
   border-radius: 1px;
 }
 
+/* progress Bar  */
+
+.progress{
+  width:100%;
+  height: 5px;
+  z-index:2000
+}
+
+.bar{
+  height: inherit;
+  background-image:linear-gradient(90deg,var(--primary-yellow),var(--primary-blue));
+}
+/* progress Bar  */
+
+
 /* button */
 .main-btn{
-  padding:0.5rem 0.4rem;
-  border:2px solid var(--btn-color);
-  color:#fff;
-  background-color: var(--btn-color);
+  padding:0.5rem 0.9rem;
+  color:var(--primary-blue);
+  background-color:var(--primary-yellow);
+  font-family: var(--secondary-font);
   letter-spacing: 1.25px;
-  border-radius: 4px;
+  border:3px solid var(--primary-yellow);
+  border-radius: 2px;
   transition: all 0.3s ease-in 0s;
   -webkit-transition: all 0.3s ease-in 0s;
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
-  box-shadow: 0 0 2px var(--secondary-font);
-  font-weight: 700;
+  font-weight: 1000;
+  font-size: 0.9rem;
+  line-height: 0.9rem;
+  display:inline-block;
+  box-shadow: 0 1px 3px gray;
 
 }
 
 .main-btn:hover{
-  color:var(--btn-color);
-  background-color: #fff;
+  background-color:var(--white);
+  color:var(--primary-yellow);
+  box-shadow: unset;
+
 }
 
 .secondary-btn{
-  padding:0.5rem 0.4rem 0.5rem 0.4rem;
-  border:2px solid #fff;
-  color:var(--btn-color);
-  background-color: #fff;
+  box-shadow: 0 1px 3px gray;
+  padding:0.5rem 0.9rem;
+  color:var(--primary-yellow);
+  background-color:transparent;
+  font-family: var(--secondary-font);
   letter-spacing: 1.25px;
-  border-radius: 4px;
+  border:3px solid var(--primary-yellow);
+  border-radius: 2px;
   transition: all 0.3s ease-in 0s;
   -webkit-transition: all 0.3s ease-in 0s;
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
-  box-shadow: 0 0 5px var(--secondary-font);
-  font-weight: 700;
+  font-weight: 1000;
+  font-size: 0.9rem;
+  line-height: 0.9rem;
+  display:inline-block;
+
 }
 
 .secondary-btn:hover{
   color:#fff;
-  background-color: var(--btn-color);
-  border:2px solid var(--btn-color);
+  border:3px solid var(--white);
+  box-shadow: unset;
 }
 
 /* button */
@@ -78,7 +104,6 @@ body{
   --highlight-first:#EDEFEE;
   --highlight-second:#333333;
   --white:#FFFFFF;
-  --background:aliceblue;
 }
 
 ul{
@@ -88,10 +113,14 @@ ul{
 a{
   text-decoration: none;
   text-transform: capitalize;
-  font-size:1.3rem ;
+  font-size:1.3rem;
   font-weight: 500;
   font-family: var(--primary-font);
   color:var(--primary-blue);
+}
+
+.navbar a{
+  font-size:1.3rem;
 }
 
 a:hover:not(footer a),a.active:not(footer a){
@@ -102,7 +131,8 @@ a:hover:not(footer a),a.active:not(footer a){
 h1{
   font-size:3rem;
   font-weight:900;
-  line-height:3rem ;
+  line-height:2.7rem ;
+  letter-spacing: 2px;
   font-family: var(--primary-font);
   color:var(--primary-yellow);
   text-transform: capitalize;
@@ -112,22 +142,24 @@ h2{
   font-size:2.5rem;
   font-weight:700;
   line-height:2.5rem ;
+  letter-spacing: 1.8px;
   font-family: var(--primary-font);
   color:var(--highlight-first);
   text-transform: capitalize;
 }
 
 h4{
-  font-size:1.7rem;
-  font-weight:800;
+  font-size:1.9rem;
+  font-weight:600;
   line-height:2rem ;
   font-family: var(--primary-font);
-  color:var(--highlight-second);
+  color:var(--primary-blue);
   text-transform: capitalize;
+  text-decoration: underline;
 }
 
 h5{
-  font-size:1.3rem;
+  font-size:1.5rem;
   font-weight:500;
   line-height:1.3rem ;
   font-family: var(--primary-font);
@@ -137,8 +169,9 @@ h5{
 
 p{
   font-size:1rem;
-  font-weight:450;
-  line-height:0.8rem ;
+  font-weight:500;
+  line-height:1.2rem ;
+  letter-spacing:0.7px;
   font-family: var(--secondary-font);
   color:var(--primary-blue);
   text-transform: capitalize;
@@ -147,7 +180,7 @@ p{
 
 
 header{
-  background-color: var(--background);
+  background-color: var(--white);
 }
 header img{
   width:180px;
@@ -182,21 +215,132 @@ footer p{
 /* user image  */
 
 /* cart  */
+#cart_parent{
+  position:relative;
+}
 #cart{
   color:var(--primary-blue);
   font-size: 1.5rem;
   cursor: pointer;
 }
-#cart:hover,#cart:focus{
-  color:var(--primary-yellow);
+
+#cart-counter{
+  position: absolute;
+  top:0;
+  right:0;
+  transform: translate(50%,-50%);
+  background-color: var(--primary-yellow);
+  padding:0.2rem 0.35rem;
+  border-radius: 4px;
+  font-weight: 900;
+  z-index: -1;
 }
+
 /* cart  */
-@media(min-width:576px){
+
+/* banner */
+.banner{
+  background-color: var(--primary-blue);
+}
+
+.banner p{
+  color:var(--highlight-first);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.banner img{
+  border-radius:0.5rem;
+}
+
+.banner button.main-btn,button.secondary-btn{
+  padding:0.7rem 1.8rem;
+}
+.banner .main-btn:hover{
+  background-color: var(--primary-blue);
+}
+/* banner */
+
+/* Highlight */
+.highlight img{
+  border-radius: 12px;
+}
+
+.highlight h5.price{
+  color:var(--secondary-one);
+}
+.highlight h5{
+  display: inline-block;
+}
+
+.highlight a{
+  color: var(--primary-yellow);
+}
+/* Highlight */
+
+/* carouse */
+.carousel{
+  background-color: var(--primary-blue);
+  padding:2rem 2.8rem;
+  border-radius: 15px;
+}
+.carousel h5{
+  color:var(--primary-yellow)
+}
+.carousel p{
+  color: var(--highlight-first);
+}
+
+.carousel img{
+  width:65px;
+  border-radius: 50%;
+}
+
+.carousel-indicators [data-bs-target]{
+  height: 15px;
+  width:15px;
+  border-radius: 50%;
+  margin-right: 4.5px;
+  margin-left: 4.5px;
+}
+/* carouse */
+
+/* parallax */
+
+#parallax{
+  background-image: url(./Assets/parallax_5.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: 0 10%;
+  padding:2.5rem 0;
+}
+#parallax h5{
+  color:var(--highlight-first)
+}
+
+#parallax a{
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+/* parallax */
+
+@media(min-width:768px){
   header img{
     width:250px;
   }
 
   #brand,#footer_icon{
     height: 4rem;
+  }
+
+  h1{
+    font-size:3.5rem;
+    line-height: 3rem;
+  }
+  h2{
+    font-size: 2.2rem;
+    line-height: 2rem;
   }
 }
