@@ -1,4 +1,6 @@
-export default function Testimonial() {
+import {memo} from 'react';
+
+function Testimonial() {
     const list = [
         {
             name: "John Doe",
@@ -32,11 +34,11 @@ export default function Testimonial() {
                         </div>
                         <div className="carousel-inner mb-3">
                             {list.map((item,index) => (
-                                index === 0 ? (<div className="carousel-item text-center active">
+                                index === 0 ? (<div key={item.name} className="carousel-item text-center active">
                                     <img className="mb-3" src={item.img} alt="test" />
                                     <h5 className="mx-auto">{item.name}</h5>
                                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae commodi eius in repellat cumque, earum nesciunt dolorum quia blanditiis neque qui quaerat reprehenderit placeat esse quibusdam deleniti incidunt exercitationem enim sapiente possimus! Delectus ipsa fuga, quo possimus quasi asperiores at praesentium incidunt, magni, repellat quibusdam!</p>
-                                </div>) : (<div className="carousel-item text-center">
+                                </div>) : (<div key={item.name} className="carousel-item text-center">
                                     <img className="mb-3" src={item.img} alt="test" />
                                     <h5 className="mx-auto">{item.name}</h5>
                                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae commodi eius in repellat cumque, earum nesciunt dolorum quia blanditiis neque qui quaerat reprehenderit placeat esse quibusdam deleniti incidunt exercitationem enim sapiente possimus! Delectus ipsa fuga, quo possimus quasi asperiores at praesentium incidunt, magni, repellat quibusdam!</p>
@@ -49,3 +51,5 @@ export default function Testimonial() {
         </section>
     )
 }
+
+export default memo(Testimonial);

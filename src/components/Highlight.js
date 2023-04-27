@@ -1,6 +1,8 @@
-import {Link} from 'react-router-dom';
-
-export default function Highlight() {
+import { Link } from 'react-router-dom';
+import { memo } from 'react';
+import Button from './Button';
+import { useDataProvider } from './DataProvide';
+function Highlight() {
     const items = [
         {
             name: "Cheese Burger",
@@ -33,6 +35,8 @@ export default function Highlight() {
             price: "13.00"
         }
     ];
+
+    const { myFun } = useDataProvider();
     return (
         <>
             <div className="highlight py-5">
@@ -44,7 +48,7 @@ export default function Highlight() {
                         {
                             items.map(item => {
                                 return (
-                                    <div className="col-lg-4 col-md-6 mt-4 p-0">
+                                    <div key={item.name} className="col-lg-4 col-md-6 mt-4 p-0">
                                         <div className="card border border-0">
                                             <div className="card-body rounded-2">
                                                 <img className="img-fluid mb-4  shadow" src={item.path} alt="menu_img" />
@@ -52,7 +56,12 @@ export default function Highlight() {
                                                 <h5 className='price float-end'><b>${item.price}</b></h5>
                                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
                                                 <hr></hr>
-                                                <button type="button" className='main-btn'>Order Now<i class=" ms-2 fa-solid fa-basket-shopping"></i></button>
+                                                <Button className="main-btn" onclick={() => myFun("cart", item)}>
+                                                    Order Now
+                                                </Button>
+                                                <Button className="secondary-btn">
+                                                     Add to cart
+                                                </Button>
                                             </div>
                                         </div>
                                     </div>
@@ -68,3 +77,5 @@ export default function Highlight() {
         </>
     )
 }
+
+export default memo(Highlight);

@@ -1,5 +1,7 @@
 import { useEffect,useState,useRef } from "react";
-export default function Progress(){
+import {memo} from 'react';
+
+function Progress(){
     const body= document.body;
     const bar = useRef();
     const[pos,setPos] = useState(0);
@@ -18,3 +20,5 @@ export default function Progress(){
         </>
     )
 }
+
+export default memo(Progress);

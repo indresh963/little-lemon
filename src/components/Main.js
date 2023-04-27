@@ -1,5 +1,9 @@
-export default function Main(){
+import Cart from './Cart';
+import {memo} from 'react'
+function Main(){
     return(
-        <h2 style={{fontSize:"1rem"}}>Hey</h2>
+        <Cart/>
     );
 }
+
+export default memo(Main);

@@ -1,6 +1,8 @@
 import icon from '../Assets/yellow_monochrome.png'
 import {Link} from 'react-router-dom'
-export default function Footer() {
+import {memo} from 'react';
+
+function Footer() {
     return (
         <footer className='border border-top border-dashed pt-4'>
             <div className='container-fluid'>
@@ -41,3 +43,5 @@ export default function Footer() {
         </footer>
     );
 }
+
+export default memo(Footer);

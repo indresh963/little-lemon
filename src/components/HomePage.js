@@ -2,7 +2,9 @@ import Hero from './Hero';
 import Highlight from './Highlight';
 import Testimonial from './Testimonial';
 import Parallax from './Parallax';
-export default function HomePage(){
+import {memo} from 'react';
+
+function HomePage(){
     return(
         <>
         <Hero/>
@@ -12,3 +14,5 @@ export default function HomePage(){
         </>
     )
 }
+
+export default memo(HomePage);

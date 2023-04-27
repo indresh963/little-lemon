@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom"
-
-export default function Parallax() {
+import { useNavigate} from 'react-router-dom';
+import {memo} from 'react';
+import Button from './Button';
+function Parallax() {
+    const navigate = useNavigate();
     return (
         <div id="parallax">
             <div className="container">
@@ -10,10 +12,14 @@ export default function Parallax() {
                             Let food be thy medicine and medicine be thy food.
                         </q></h2>
                         <h5 className="mb-3">Learn more about our food, services and business by clicking the button below</h5>
-                        <button type="button" class="main-btn"><Link to="/about">Learn more</Link></button>
+                        <Button className="main-btn" onclick={()=> navigate('/about')}>
+                            Learn more
+                        </Button>
                     </div>
                 </div>
             </div>
         </div>
     )
 }
+
+export default memo(Parallax);

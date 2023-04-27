@@ -7,7 +7,9 @@ import Reservation from './Reservation';
 import Orderonline from './Orderonline';
 import Login from './Login';
 import icon from '../Assets/yellow_monochrome.png'
-export default function Nav() {
+import { memo } from 'react';
+import { useDataProvider } from './DataProvide';
+function Nav() {
     const navBar = useRef();
     useEffect(() => {
         const Scroll = () => {
@@ -15,10 +17,13 @@ export default function Nav() {
                 navBar.current.classList.add("shadow") :
                 navBar.current.classList.remove("shadow");
         }
-        window.addEventListener('scroll',Scroll)
+        window.addEventListener('scroll', Scroll)
 
-        return () => window.removeEventListener('scroll',Scroll);
+        return () => window.removeEventListener('scroll', Scroll);
     }, [])
+
+    const { cartItems } = useDataProvider();
+
     return (
         <>
             <nav ref={navBar} className='navbar navbar-expand-lg navbar-light bg-white border border-1 sticky-top'>
@@ -39,7 +44,12 @@ export default function Nav() {
                     </div>
                     <ul className='nav ms-auto align-items-center gap-2 me-3'>
                         <li className='nav-item'><Link className='nav-link active' to="/"><img id="user_img" className='rounded-circle' src={require('../Assets/user.png')} alt="user image" /></Link></li>
-                        <li id="cart_parent" className='nav-item pt-2'><i id="cart" class=" fa-solid fa-cart-shopping"></i><p id="cart-counter">87</p></li>
+                        <li id="cart_parent" className='nav-item pt-2'>
+                            <i id="cart" className=" fa-solid fa-cart-shopping" data-bs-toggle="offcanvas" data-bs-target="#basket"></i>
+                            {
+                                cartItems.length > 0 ? <p id="cart-counter">{cartItems.length}</p> : null
+                            }
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -54,3 +64,5 @@ export default function Nav() {
         </>
     );
 }
+
+export default memo(Nav);
