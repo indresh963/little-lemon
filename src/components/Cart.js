@@ -50,7 +50,7 @@ function Cart() {
                                                     </div>
                                                 </div>
                                                 <div className='col-4 d-flex flex-column gap-3'>
-                                                    <p className="align-self-end mb-0" id="cancel-btn">x</p>
+                                                    <p className="align-self-end mb-0" id="cancel-btn" onClick={() => myFun("cartdelete",item)}>x</p>
                                                     <div className='d-flex justify-content-between quantity align-items-center'>
                                                         <Button className="main-btn" abled={item.qty === 1} onclick={() => myFun("cartremove", item)}>
                                                             -
@@ -103,7 +103,7 @@ function Cart() {
                                 </div>
                             )
                         }
-                        <Button abled={cartItems.length === 0} className='main-btn mt-5 w-100'>
+                        <Button abled={totalItem === 0} className='main-btn mt-5 w-100'>
                             Order Now<i className=" ms-3 fa-solid fa-basket-shopping"></i>
                         </Button>
                     </div>

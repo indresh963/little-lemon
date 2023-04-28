@@ -17,12 +17,18 @@ const reducer = (state, action) => {
             }
         case "cartremove":
             tempCartItems = [...state.cartItems];
-            if(tempCartItems[action.data.id].qty > 1){
-                tempCartItems[action.data.id].qty--;
-            }
+            tempCartItems[action.data.id].qty--;
             return {
                 ...state,
                 totalItem:state.totalItem -1,
+                cartItems: tempCartItems
+            }
+        case "cartdelete":
+            tempCartItems = [...state.cartItems];
+            tempCartItems[action.data.id] = undefined;
+            return {
+                ...state,
+                totalItem:state.totalItem - action.data.qty,
                 cartItems: tempCartItems
             }
         case "orderonline":
