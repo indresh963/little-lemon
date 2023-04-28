@@ -57,12 +57,6 @@ body{
 
 }
 
-.main-btn:hover:not(.highlight .main-btn, :disabled){
-  background-color:var(--white);
-  color:var(--primary-yellow);
-  box-shadow: unset;
-
-}
 
 .secondary-btn{
   padding:0.5rem 0.9rem;
@@ -85,17 +79,19 @@ body{
 }
 
 button:active:not(:disabled){
-  background-color: var(--white);
-  border-color: var(--white);
-}
-.secondary-btn:hover:not(.highlight .secondary-btn:hover, :disabled){
-  color:#fff;
-  border-color: var(--white);
-  box-shadow: unset;
+  background-color: black;
 }
 
 button:disabled{
   opacity: 0.7;
+}
+
+#cancel-btn{
+ cursor: pointer;
+}
+#cancel-btn:hover{
+  color:red;
+ font-weight: 600;
 }
 /* button */
 
@@ -268,6 +264,10 @@ p.cart-price{
 .billing-details h5{
   color:var(--primary-blue)
 }
+
+.offcanvas-body .quantity button{
+  padding:0.2rem 0.5rem;
+}
 /* cart  */
 
 /* banner */
@@ -287,9 +287,6 @@ p.cart-price{
 
 .banner button.main-btn,.banner button.secondary-btn{
   padding:0.7rem 1.8rem;
-}
-.banner .main-btn:hover{
-  background-color: var(--primary-blue);
 }
 /* banner */
 

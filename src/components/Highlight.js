@@ -7,32 +7,44 @@ function Highlight() {
         {
             name: "Cheese Burger",
             path: require("../Assets/cheese_burger.jpg"),
-            price: "12.00"
+            price: "12.00",
+            qty : 1,
+            id : 0
         },
         {
             name: "Choclate Brownies",
             path: require("../Assets/brownies2.jpg"),
-            price: "10.00"
+            price: "10.00",
+            qty : 1,
+            id : 1
         },
         {
             name: "Croissant",
             path: require("../Assets/croissant.jpg"),
-            price: "4.00"
+            price: "4.00",
+            qty : 1,
+            id : 2
         },
         {
             name: "Pork Chop",
             path: require("../Assets/pork_chop2.jpg"),
-            price: "15.00"
+            price: "15.00",
+            qty : 1,
+            id : 3
         },
         {
             name: "Cheesecake",
             path: require("../Assets/cheese_cake.jpg"),
-            price: "9.00"
+            price: "9.00",
+            qty : 1,
+            id : 4
         },
         {
             name: "Salmon Bowl",
             path: require("../Assets/salmon_bowl2.jpg"),
-            price: "13.00"
+            price: "13.00",
+            qty : 1,
+            id : 5
         }
     ];
 
@@ -56,10 +68,10 @@ function Highlight() {
                                                 <h5 className='price float-end'><b>${item.price}</b></h5>
                                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
                                                 <hr></hr>
-                                                <Button className="main-btn" onclick={() => myFun("cart", item)}>
+                                                <Button className="main-btn" >
                                                     Order Now
                                                 </Button>
-                                                <Button className="secondary-btn">
+                                                <Button className="secondary-btn" onclick={() => myFun("cartadd", item)}>
                                                      Add to cart
                                                 </Button>
                                             </div>

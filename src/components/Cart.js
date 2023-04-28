@@ -2,12 +2,12 @@ import { memo, useState, useEffect } from 'react';
 import { useDataProvider } from './DataProvide';
 import Button from './Button';
 function Cart() {
-    const { cartItems } = useDataProvider();
+    const { cartItems, totalItem, myFun } = useDataProvider();
     const [total, setTotal] = useState(0);
     useEffect(() => {
         let to = 0;
         for (var x of cartItems) {
-            to += Number(x.price);
+            if (x) to += (Number(x.price) * x.qty);
         }
         setTotal(to);
     }, [cartItems])
@@ -19,14 +19,14 @@ function Cart() {
                     <div className='offcanvas-title'>
                         <img src={require('../Assets/yellow_brand.png')} alt="cart-heading" />
                     </div>
-                    <button class="btn-close btn-danger" data-bs-dismiss="offcanvas"></button>
+                    <button class="btn-close btn-primary" data-bs-dismiss="offcanvas"></button>
                 </div>
                 <div class="offcanvas-body">
                     <div className='container'>
                         {
-                            cartItems.length > 0 ? (
+                            totalItem > 0 ? (
                                 <>
-                                    <h4 className='mb-3'>Your cart has {cartItems.length} items</h4>
+                                    <h4 className='mb-3'>Your cart has {totalItem} items</h4>
                                     <div className='row mb-4 heading rounded p-2 justify-content-center'>
                                         <div className='col-7'>
                                             <h5 className='mb-0'>Cart Items</h5>
@@ -36,8 +36,8 @@ function Cart() {
                                         </div>
                                     </div>
                                     {cartItems.map(item => {
-                                        return (
-                                            <div className='row py-2 border-bottom align-items-center'>
+                                        return item && (
+                                            <div className='row py-2 border-bottom'>
                                                 <div className='col-8'>
                                                     <div className='row '>
                                                         <div className='col-7'>
@@ -49,8 +49,17 @@ function Cart() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className='col-4 text-center'>
-                                                    <p className='mb-0 fw-bold'>1</p>
+                                                <div className='col-4 d-flex flex-column gap-3'>
+                                                    <p className="align-self-end mb-0" id="cancel-btn">x</p>
+                                                    <div className='d-flex justify-content-between quantity align-items-center'>
+                                                        <Button className="main-btn" abled={item.qty === 1} onclick={() => myFun("cartremove", item)}>
+                                                            -
+                                                        </Button>
+                                                        <p className='mb-0 fw-bold'>{item.qty}</p>
+                                                        <Button className="main-btn" onclick={() => myFun("cartadd", item)}>
+                                                            +
+                                                        </Button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         )
@@ -87,10 +96,15 @@ function Cart() {
                                         </div>
                                     </div>
                                 </>
-                            ) : <h5>No items added</h5>
+                            ) : (
+                                <div className='text-center py-3'>
+                                    <h5>No items added</h5>
+                                    <p>Add your favourite food items here</p>
+                                </div>
+                            )
                         }
                         <Button abled={cartItems.length === 0} className='main-btn mt-5 w-100'>
-                            Order Now<i class=" ms-3 fa-solid fa-basket-shopping"></i>
+                            Order Now<i className=" ms-3 fa-solid fa-basket-shopping"></i>
                         </Button>
                     </div>
                 </div>

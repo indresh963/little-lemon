@@ -22,7 +22,7 @@ function Nav() {
         return () => window.removeEventListener('scroll', Scroll);
     }, [])
 
-    const { cartItems } = useDataProvider();
+    const { totalItem } = useDataProvider();
 
     return (
         <>
@@ -47,7 +47,7 @@ function Nav() {
                         <li id="cart_parent" className='nav-item pt-2'>
                             <i id="cart" className=" fa-solid fa-cart-shopping" data-bs-toggle="offcanvas" data-bs-target="#basket"></i>
                             {
-                                cartItems.length > 0 ? <p id="cart-counter">{cartItems.length}</p> : null
+                                totalItem > 0 ? <p id="cart-counter">{totalItem}</p> : null
                             }
                         </li>
                     </ul>
