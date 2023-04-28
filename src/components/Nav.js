@@ -1,5 +1,5 @@
 import { Routes, Route, Link } from 'react-router-dom'
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import HomePage from './HomePage';
 import About from './About';
 import Menu from './Menu';
@@ -22,7 +22,8 @@ function Nav() {
         return () => window.removeEventListener('scroll', Scroll);
     }, [])
 
-    const { totalItem } = useDataProvider();
+    const { totalItem, isLoggedIn } = useDataProvider();
+    const [show, setShow] = useState(false);
 
     return (
         <>
@@ -43,7 +44,29 @@ function Nav() {
                         </ul>
                     </div>
                     <ul className='nav ms-auto align-items-center gap-2 me-3'>
-                        <li className='nav-item'><Link className='nav-link active' to="/"><img id="user_img" className='rounded-circle' src={require('../Assets/user.png')} alt="user image" /></Link></li>
+                        <li className='nav-item me-3' id='login-popup-parent'>
+                            <img onClick={() => setShow(val => !val)} id="user_img" className='rounded-circle' src={require('../Assets/user.png')} alt="user image" />
+                            {show && <div id="login-popup" className='d-flex flex-column pb-2'>
+                                <div className='px-3 pt-2 pb-3 shadow-sm d-flex justify-content-between' id='login-popup-header'>
+                                    <p className='fw-bold mb-0' >User Accounts</p>
+                                    <p className="fw-bold mb-0" id="cancel-popup" onClick={() => setShow(val => !val)}>x</p>
+                                </div>
+                                {
+                                    isLoggedIn ? (<p>Hello</p>) :
+                                        (<>
+                                            <div className='d-flex px-2 align-items-center'>
+                                                <p className='mb-0 fw-lighter'>You're not logged in</p>
+                                                <Link to="/login" className="ms-5 text-decoration-underline">login</Link>
+                                            </div>
+                                            <div className='d-flex px-2 justify-content-between align-items-center'>
+                                                <p className='fw-bold mb-0'>New User ?</p>
+                                                <Link to="/login" className="ms-5 text-decoration-underline">Signup</Link>
+                                            </div>
+                                        </>
+                                        )
+                                }
+                            </div>}
+                        </li>
                         <li id="cart_parent" className='nav-item pt-2'>
                             <i id="cart" className=" fa-solid fa-cart-shopping" data-bs-toggle="offcanvas" data-bs-target="#basket"></i>
                             {

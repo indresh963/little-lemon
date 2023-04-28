@@ -126,7 +126,7 @@ a{
   font-size:1.3rem;
 }
 
-a:hover:not(footer a),a.active:not(footer a){
+a:hover:not(footer a,#login-popup a),a.active:not(footer a){
   color:var(--primary-yellow) !important;
 
 }
@@ -213,9 +213,40 @@ footer p{
 /* user image  */
 #user_img{
   width: 32px;
-  border:0.2px solid var(--primary-blue)
+  border:0.2px solid var(--primary-blue);
+  cursor: pointer;
 }
 /* user image  */
+/* login-popup  */
+#login-popup{
+  position: absolute;
+  top:4.5rem;
+  right:0.8rem;
+  z-index: 10;
+  background-color: var(--white);
+  width:max-content;
+  box-shadow:0 0 8px black;
+  border-radius: 5px;
+}
+
+#login-popup a{
+  color:blue;
+}
+
+#login-popup-header{
+  background-color: var(--primary-blue);
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+#login-popup-header p{
+  color:var(--highlight-first)
+}
+
+#login-popup #cancel-popup{
+  cursor:pointer;
+}
+/* login-popup */
 
 /* cart  */
 #cart_parent{

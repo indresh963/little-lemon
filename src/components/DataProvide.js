@@ -62,6 +62,7 @@ const DataContext = createContext();
 
 export default function DataProvider({ children }) {
     const initialData = {
+        isLoggedIn:false,
         totalItem:0,
         cartItems: [],
         orderItems: [],
@@ -79,6 +80,7 @@ export default function DataProvider({ children }) {
     return (
         <DataContext.Provider value={
             {
+                isLoggedIn : state.isLoggedIn,
                 totalItem : state.totalItem,
                 cartItems : state.cartItems,
                 orderItems :state.orderItems,
