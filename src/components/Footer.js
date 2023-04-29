@@ -19,7 +19,7 @@ function Footer() {
                             <li className='col-lg-4 col-6'><Link to="/menu">Menu</Link></li>
                             <li className='col-lg-4 col-6'><Link to="/reservation">Reservation</Link></li>
                             <li className='col-lg-4 col-6'><Link to="/orderOnline">Order Online</Link></li>
-                            <li className='col-lg-4 col-6'><Link to="/logIn">Login</Link></li>
+                            <li className='col-lg-4 col-6'><Link to="/account">My account</Link></li>
                         </ul>
                     </div>
                     <div className="col-sm-4 col-8 mt-sm-0  mt-3 ">

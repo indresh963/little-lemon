@@ -6,6 +6,8 @@ import Menu from './Menu';
 import Reservation from './Reservation';
 import Orderonline from './Orderonline';
 import Login from './Login';
+import Log from './Log';
+import Signup from './Signup'
 import icon from '../Assets/yellow_monochrome.png'
 import { memo } from 'react';
 import { useDataProvider } from './DataProvide';
@@ -40,27 +42,27 @@ function Nav() {
                             <li className='nav-item'><Link className='nav-link' to="/menu">Menu</Link></li>
                             <li className='nav-item'><Link className='nav-link' to="/reservation">Reservation</Link></li>
                             <li className='nav-item'><Link className='nav-link' to="/orderOnline">Order Online</Link></li>
-                            <li className='nav-item'><Link className='nav-link' to="/logIn">Login</Link></li>
+                            <li className='nav-item'><Link className='nav-link' to="/account">My Account</Link></li>
                         </ul>
                     </div>
                     <ul className='nav ms-auto align-items-center gap-2 me-3'>
                         <li className='nav-item me-3' id='login-popup-parent'>
                             <img onClick={() => setShow(val => !val)} id="user_img" className='rounded-circle' src={require('../Assets/user.png')} alt="user image" />
                             {show && <div id="login-popup" className='d-flex flex-column pb-2'>
-                                <div className='px-3 pt-2 pb-3 shadow-sm d-flex justify-content-between' id='login-popup-header'>
+                                <div className='px-3 py-2 shadow-sm d-flex justify-content-between' id='login-popup-header'>
                                     <p className='fw-bold mb-0' >User Accounts</p>
                                     <p className="fw-bold mb-0" id="cancel-popup" onClick={() => setShow(val => !val)}>x</p>
                                 </div>
                                 {
                                     isLoggedIn ? (<p>Hello</p>) :
                                         (<>
-                                            <div className='d-flex px-2 align-items-center'>
+                                            <div className='d-flex px-2 pt-1 align-items-center'>
                                                 <p className='mb-0 fw-lighter'>You're not logged in</p>
-                                                <Link to="/login" className="ms-5 text-decoration-underline">login</Link>
+                                                <Link to="/login" className="ms-5" onClick={() => setShow(val => !val)}>login</Link>
                                             </div>
                                             <div className='d-flex px-2 justify-content-between align-items-center'>
                                                 <p className='fw-bold mb-0'>New User ?</p>
-                                                <Link to="/login" className="ms-5 text-decoration-underline">Signup</Link>
+                                                <Link to="/signup" className="ms-5" onClick={() => setShow(val => !val)}>Signup</Link>
                                             </div>
                                         </>
                                         )
@@ -82,7 +84,9 @@ function Nav() {
                 <Route path="/menu" element={<Menu />} />
                 <Route path="/reservation" element={<Reservation />} />
                 <Route path="/orderOnline" element={<Orderonline />} />
-                <Route path="/logIn" element={<Login />} />
+                <Route path="/account" element={<Login />} />
+                <Route path='/login' element={<Log/>}/>
+                <Route path='/signup' element={<Signup/>}/>
             </Routes>
         </>
     );

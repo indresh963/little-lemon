@@ -93,6 +93,8 @@ button:disabled{
   color:red;
  font-weight: 600;
 }
+
+button:disabled{box-shadow:unset}
 /* button */
 
 /* custom css */
@@ -126,7 +128,7 @@ a{
   font-size:1.3rem;
 }
 
-a:hover:not(footer a,#login-popup a),a.active:not(footer a){
+a:hover:not(footer a,#login-popup a,#login-page a),a.active:not(footer a,#login-popup a,#login-page a){
   color:var(--primary-yellow) !important;
 
 }
@@ -399,7 +401,23 @@ p.cart-price{
 }
 /* secondary-btn in .highlight  */
 
+/* login-header  */
+#login-page .fs{
+  font-size:1.5rem;
+}
 
+/* login-header  */
+
+/* toast */
+.toast.show{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-color: white;
+  transform: translateX(-50%);
+  z-index:1;
+}
+/* toast */
 @media(min-width:768px){
   header img{
     width:250px;
@@ -422,5 +440,15 @@ p.cart-price{
 @media (min-width:370px){
   .highlight .secondary-btn{
     margin-left: 0.8rem;
+  }
+}
+
+@media (max-width:470px){
+  #login-page .fs-sm{
+    font-size: 0.7rem;
+  }
+
+  #login-page .fs{
+    font-size: 1.2rem;
   }
 }

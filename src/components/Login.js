@@ -2,7 +2,7 @@ import {memo} from 'react';
 
 function Login(){
     return(
-        <h2>Login</h2>
+        <h2>Account</h2>
     )
 }
 
