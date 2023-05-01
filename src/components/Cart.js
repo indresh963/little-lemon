@@ -14,14 +14,14 @@ function Cart() {
     let dis = 0;
     return (
         <>
-            <div class="offcanvas offcanvas-start" id="basket" >
-                <div class="offcanvas-header border-bottom">
+            <div className="offcanvas offcanvas-start" id="basket" >
+                <div className="offcanvas-header border-bottom">
                     <div className='offcanvas-title'>
                         <img src={require('../Assets/yellow_brand.png')} alt="cart-heading" />
                     </div>
-                    <button class="btn-close btn-primary" data-bs-dismiss="offcanvas"></button>
+                    <button className="btn-close btn-primary" data-bs-dismiss="offcanvas"></button>
                 </div>
-                <div class="offcanvas-body">
+                <div className="offcanvas-body">
                     <div className='container'>
                         {
                             totalItem > 0 ? (

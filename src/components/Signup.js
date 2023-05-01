@@ -1,8 +1,38 @@
 import { memo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import google from '../Assets/google-icon.svg'
 import Facebook from '../Assets/facebook-icon.svg'
+import { useDataProvider } from './DataProvide';
 function Signup() {
+    const navigate = useNavigate();
+    const initialValues = {
+        name: '',
+        email: '',
+        password: '',
+        confirm_password: ''
+    }
+
+    const onSubmit = (values,onsubmitprops)=>{
+        myFun('addUser',values);
+        onsubmitprops.resetForm();
+        navigate('/login');
+    }
+
+    const validationSchema = Yup.object({
+        name: Yup.string().required("This field is required"),
+        email: Yup.string().email("Invalid email format").required("This field is required"),
+        password: Yup.string().min("4").required("This field is required"),
+        confirm_password: Yup.string().oneOf([Yup.ref('password'), null], 'Password is not matching').required("This field is required")
+    })
+    const formik = useFormik({
+        initialValues,
+        onSubmit,
+        validationSchema
+    })
+
+    const {myFun} = useDataProvider();
     return (
         <div className='container my-5' id='login-page'>
             <div className='row justify-content-center'>
@@ -13,40 +43,52 @@ function Signup() {
                         <Link to='/login' className='fs' style={{ color: "blue" }}>Signin</Link>
                     </div>
                     <span className='mx-3 text-muted fw-bold fs-sm'>Enter your details</span>
-                    <form className='d-flex flex-column m-3 gap-3 text-start'>
-                        <div className='form-floating'>
-                            <input type='text' name='name' value='' placeholder='name' id='name' className='bg-light form-control' />
-                            <label className='form-lable text-muted fw-bold fs-sm' htmlFor='name'>Name</label>
+                    <form className='d-flex flex-column m-3 gap-3 text-start' onSubmit={formik.handleSubmit}>
+                        <div>
+                            <div className='form-floating'>
+                                <input type='text' name='name' {...formik.getFieldProps('name')} placeholder='name' id='name' className='bg-light form-control' />
+                                <label className='form-lable text-muted fw-bold fs-sm' htmlFor='name'>Name</label>
+                            </div>
+                            {formik.touched.name && formik.errors.name ? <span className='text-danger' style={{ fontSize: "0.8rem" }}>{formik.errors.name}</span> : null}
                         </div>
-                        <div className='form-floating'>
-                            <input type='email' name='name' value='' placeholder='email' id='email' className='bg-light form-control' />
-                            <label className='form-lable text-muted fw-bold fs-sm' htmlFor='email'>Email</label>
+                        <div>
+                            <div className='form-floating'>
+                                <input type='email' name='name' {...formik.getFieldProps('email')} placeholder='email' id='email' className='bg-light form-control' />
+                                <label className='form-lable text-muted fw-bold fs-sm' htmlFor='email'>Email</label>
+                            </div>
+                            {formik.touched.email && formik.errors.email ? <span className='text-danger' style={{ fontSize: "0.8rem" }}>{formik.errors.email}</span> : null}
                         </div>
-                        <div className='form-floating'>
-                            <input type='password' name='password' value='' placeholder='pwd' id='password' className='bg-light form-control' />
-                            <label className='form-lable text-muted fw-bold fs-sm' htmlFor='password'>Password</label>
+                        <div>
+                            <div className='form-floating'>
+                                <input type='password' name='password' {...formik.getFieldProps('password')} placeholder='pwd' id='password' className='bg-light form-control' />
+                                <label className='form-lable text-muted fw-bold fs-sm' htmlFor='password'>Password</label>
+                            </div>
+                            {formik.touched.password && formik.errors.password ? <span className='text-danger' style={{ fontSize: "0.8rem" }}>{formik.errors.password}</span> : null}
                         </div>
-                        <div className='form-floating'>
-                            <input type='password' name='confirm-password' value='' placeholder='confirm-pwd' id='confirm-password' className='bg-light form-control' />
-                            <label className='form-lable text-muted fw-bold fs-sm' htmlFor='confirm-password'>Confirm Password</label>
+                        <div>
+                            <div className='form-floating'>
+                                <input type='password' name='confirm_password' {...formik.getFieldProps('confirm_password')} placeholder='confirm-pwd' id='confirm_password' className='bg-light form-control' />
+                                <label className='form-lable text-muted fw-bold fs-sm' htmlFor='confirm_password'>Confirm Password</label>
+                            </div>
+                            {formik.touched.confirm_password && formik.errors.confirm_password ? <span className='text-danger' style={{ fontSize: "0.8rem" }}>{formik.errors.confirm_password}</span> : null}
                         </div>
                         <div className='form-check'>
                             <input type='checkbox' className='form-check-input' id='remember' />
                             <label htmlFor='remember' className='form-check-label fs-sm text-muted fw-bold user-select-none'>I accept <a href='#' className=' text-primary fs-sm text-lowercase text-decoration-underline'> terms and condition </a></label>
                         </div>
-                        <button className='btn btn-primary fw-bold fs-sm'>Continue</button>
+                        <button type='submit' disabled={Object.keys(formik.errors).length > 0 || Object.keys(formik.touched).length === 0} className='btn btn-primary fw-bold fs-sm'>Continue</button>
                     </form>
                     <span className='fw-bold text-muted fs-sm'>OR</span>
-                        <div className='d-grid mx-3 mt-2 mb-3 gap-3 '>
-                            <button className=' btn-block btn-primary btn shadow-sm'>
-                                <img src={google} alt='google-icon' className='img-fluid me-3' width="25px" />
-                                <span className=' fw-bold fs-sm'>Signin with Google</span>
-                            </button>
-                            <button className=' btn-block btn-primary btn shadow-sm'>
-                                <img src={Facebook} alt='facebook-icon' className='img-fluid me-3' width="25px" />
-                                <span className='  fw-bold fs-sm'>Signin with Facebook</span>
-                            </button>
-                        </div>
+                    <div className='d-grid mx-3 mt-2 mb-3 gap-3 '>
+                        <button className=' btn-block btn-primary btn shadow-sm'>
+                            <img src={google} alt='google-icon' className='img-fluid me-3' width="25px" />
+                            <span className=' fw-bold fs-sm'>Signup with Google</span>
+                        </button>
+                        <button className=' btn-block btn-primary btn shadow-sm'>
+                            <img src={Facebook} alt='facebook-icon' className='img-fluid me-3' width="25px" />
+                            <span className='  fw-bold fs-sm'>Signup with Facebook</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -36,22 +36,19 @@ const reducer = (state, action) => {
                 ...state,
                 orderItems: [...state.orderItems,action.data]
             }
-        case "login":
-            let pro = action.part;
+        case "addUser":
             return {
                 ...state,
-                loginDetails: {
-                    ...state.loginDetails,
-                    pro: action.data
-                }
+                usersList: [
+                    ...state.usersList,
+                    action.data
+                ]
             }
         default:
-            pro = action.part;
             return {
                 ...state,
                 bookingDetails: {
                     ...state.bookingDetails,
-                    pro: action.data
                 }
             }
 
@@ -66,7 +63,7 @@ export default function DataProvider({ children }) {
         totalItem:0,
         cartItems: [],
         orderItems: [],
-        loginDetails: {},
+        usersList:[],
         bookingDetails: {}
     }
     const [state, dispatch] = useReducer(reducer, initialData);
@@ -84,7 +81,7 @@ export default function DataProvider({ children }) {
                 totalItem : state.totalItem,
                 cartItems : state.cartItems,
                 orderItems :state.orderItems,
-                loginDetails :state.loginDetails,
+                usersList :state.usersList,
                 bookingDetails :state.bookingDetails,
                 myFun
             }
