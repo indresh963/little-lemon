@@ -44,6 +44,12 @@ const reducer = (state, action) => {
                     action.data
                 ]
             }
+        case "login":
+            return {
+                ...state,
+                isLoggedIn : true,
+                activeUser : action.data,
+            }
         default:
             return {
                 ...state,
@@ -64,7 +70,8 @@ export default function DataProvider({ children }) {
         cartItems: [],
         orderItems: [],
         usersList:[],
-        bookingDetails: {}
+        bookingDetails: {},
+        activeUser:undefined
     }
     const [state, dispatch] = useReducer(reducer, initialData);
     function myFun(role,info,sect){
@@ -83,6 +90,7 @@ export default function DataProvider({ children }) {
                 orderItems :state.orderItems,
                 usersList :state.usersList,
                 bookingDetails :state.bookingDetails,
+                activeUser : state.activeUser,
                 myFun
             }
         } >

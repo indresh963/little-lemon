@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useState,useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -6,19 +6,22 @@ import google from '../Assets/google-icon.svg'
 import Facebook from '../Assets/facebook-icon.svg'
 import { useDataProvider } from './DataProvide';
 function Log() {
-    const { usersList } = useDataProvider();
+    const { usersList,myFun } = useDataProvider();
     const [valid, setValid] = useState()
     const navigate = useNavigate();
-    const authenticate = (usersList, data) => {
-        let { email, password } = data;
-        for (var user of usersList) {
-            if (email === user.email && password === user.password) {
-                setValid(true);
-                return;
+    const authenticate = useCallback(
+        (usersList, data) => {
+            let { email, password } = data;
+            for (var user of usersList) {
+                if (email === user.email && password === user.password) {
+                    myFun("login",user);
+                    setValid(true);
+                    return;
+                }
             }
-        }
-        setValid(false);
-    }
+            setValid(false);
+        },[]
+    );
     const initialValues = {
         email: '',
         password: ''
@@ -41,11 +44,11 @@ function Log() {
     return (
         <>
             {valid !== undefined ? (
-                valid ? navigate('/') : (
+                valid ? navigate('/'): (
                     <div className="toast show">
                         <div className="toast-header">
                             <strong className="fs-5 text-danger me-auto">Error</strong>
-                            <button type="button" className="btn-close" data-bs-dismiss="toast"></button>
+                            <button type="button" className="btn-close" data-bs-dismiss="toast" onClick={()=> setValid(undefined)}></button>
                         </div>
                         <div className="toast-body">
                             <span className='fs-6'>You entered wrong user credentials.</span>

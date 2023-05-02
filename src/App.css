@@ -218,6 +218,11 @@ footer p{
   border:0.2px solid var(--primary-blue);
   cursor: pointer;
 }
+.users-img{
+  width:25px;
+  cursor: pointer;
+
+}
 /* user image  */
 /* login-popup  */
 #login-popup{
@@ -226,7 +231,7 @@ footer p{
   right:0.8rem;
   z-index: 10;
   background-color: var(--white);
-  width:max-content;
+  width:250px;
   box-shadow:0 0 8px black;
   border-radius: 5px;
 }
@@ -412,7 +417,7 @@ p.cart-price{
 .toast.show{
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: calc(50vh);
   background-color: white;
   transform: translateX(-50%);
   z-index:1;

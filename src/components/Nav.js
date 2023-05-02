@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import { useRef, useEffect, useState } from 'react';
 import HomePage from './HomePage';
 import About from './About';
@@ -24,8 +24,9 @@ function Nav() {
         return () => window.removeEventListener('scroll', Scroll);
     }, [])
 
-    const { totalItem, isLoggedIn } = useDataProvider();
+    const { totalItem, isLoggedIn, usersList, activeUser, myFun } = useDataProvider();
     const [show, setShow] = useState(false);
+    const navigate = useNavigate();
 
     return (
         <>
@@ -54,10 +55,41 @@ function Nav() {
                                     <p className="fw-bold mb-0" id="cancel-popup" onClick={() => setShow(val => !val)}>x</p>
                                 </div>
                                 {
-                                    isLoggedIn ? (<p>Hello</p>) :
+                                    isLoggedIn ? (
+                                        <div className='mx-2 mt-1 d-flex flex-column gap-1'>
+                                            <div className="users p-1">
+                                                {
+                                                    <>
+                                                        <div className='pb-2 d-flex gap-2 border-bottom align-items-center'>
+                                                            <img className='users-img rounded-circle border  border-success' style={{cursor:"default"}} src={require('../Assets/user.png')} alt="user image" />
+                                                            <span className='fw-bold' style={{ fontSize: "0.8rem" }}>{activeUser.name}</span>
+                                                            <span style={{ fontSize: "0.7rem", }} className='text-success ms-auto'>Active</span>
+                                                        </div>
+                                                        <div className='mt-1'>
+                                                            <span style={{ fontSize: "0.9rem" }} className='mb-2'>Other Accounts</span>
+                                                            {usersList.map(user => (
+                                                                <div className='pb-1 mt-1 d-flex gap-2 border-bottom align-items-center' style={{cursor:"pointer"}} onClick={() => myFun("login", user
+                                                                )}>
+                                                                <img className='users-img rounded-circle' src={require('../Assets/user.png')} alt="user image"  />
+                                                                <span style={{ fontSize: "0.8rem", }}>{user.name}</span>
+                                                            </div>
+                                                            ))}
+                                                        </div>
+                                                        <div className='mt-2' style={{cursor:"pointer"}} onClick={() => {
+                                                                navigate('/signup')
+                                                                setShow(val => !val)
+                                                            }}>
+                                                            <img className='users-img rounded-circle' src={require('../Assets/add-user.png')} alt="user image"  />
+                                                            <span style={{ fontSize: "0.8rem", }} className='ms-2'>Add account</span>
+                                                        </div>
+                                                    </>
+                                                }
+                                            </div>
+                                        </div>
+                                    ) :
                                         (<>
-                                            <div className='d-flex px-2 pt-1 align-items-center'>
-                                                <p className='mb-0 fw-lighter'>You're not logged in</p>
+                                            <div className='d-flex px-2 pt-1 align-items-center justify-content-between'>
+                                                <p className='mb-0 fw-lighter'>Not logged in</p>
                                                 <Link to="/login" className="ms-5" onClick={() => setShow(val => !val)}>login</Link>
                                             </div>
                                             <div className='d-flex px-2 justify-content-between align-items-center'>
@@ -85,8 +117,8 @@ function Nav() {
                 <Route path="/reservation" element={<Reservation />} />
                 <Route path="/orderOnline" element={<Orderonline />} />
                 <Route path="/account" element={<Login />} />
-                <Route path='/login' element={<Log/>}/>
-                <Route path='/signup' element={<Signup/>}/>
+                <Route path='/login' element={<Log />} />
+                <Route path='/signup' element={<Signup />} />
             </Routes>
         </>
     );
