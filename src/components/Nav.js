@@ -24,7 +24,7 @@ function Nav() {
         return () => window.removeEventListener('scroll', Scroll);
     }, [])
 
-    const { totalItem, isLoggedIn, usersList, activeUser, myFun } = useDataProvider();
+    const { totalItem, isLoggedIn, usersList, activeUser, myFun, hasSignedUp } = useDataProvider();
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
 
@@ -46,41 +46,52 @@ function Nav() {
                             <li className='nav-item'><Link className='nav-link' to="/account">My Account</Link></li>
                         </ul>
                     </div>
-                    <ul className='nav ms-auto align-items-center gap-2 me-3'>
-                        <li className='nav-item me-3' id='login-popup-parent'>
-                            <img onClick={() => setShow(val => !val)} id="user_img" className='rounded-circle' src={require('../Assets/user.png')} alt="user image" />
+                    <ul className='nav ms-auto gap-2 me-3'>
+                        <li className='nav-item me-3 d-flex flex-column align-items-center' id='login-popup-parent'>
+                            <img onClick={() => setShow(val => !val)} id="user_img" className='rounded-circle' src={require('../Assets/user.png')} alt="user" />
+                            {isLoggedIn && <span className='fw-bold d-block' style={{ fontSize: "0.8rem", color: "#495E57" }}>{activeUser.name}</span>}
                             {show && <div id="login-popup" className='d-flex flex-column pb-2'>
                                 <div className='px-3 py-2 shadow-sm d-flex justify-content-between' id='login-popup-header'>
                                     <p className='fw-bold mb-0' >User Accounts</p>
                                     <p className="fw-bold mb-0" id="cancel-popup" onClick={() => setShow(val => !val)}>x</p>
                                 </div>
                                 {
-                                    isLoggedIn ? (
+                                    hasSignedUp ? (
                                         <div className='mx-2 mt-1 d-flex flex-column gap-1'>
                                             <div className="users p-1">
                                                 {
                                                     <>
-                                                        <div className='pb-2 d-flex gap-2 border-bottom align-items-center'>
-                                                            <img className='users-img rounded-circle border  border-success' style={{cursor:"default"}} src={require('../Assets/user.png')} alt="user image" />
-                                                            <span className='fw-bold' style={{ fontSize: "0.8rem" }}>{activeUser.name}</span>
-                                                            <span style={{ fontSize: "0.7rem", }} className='text-success ms-auto'>Active</span>
-                                                        </div>
+                                                        {
+                                                            isLoggedIn && (
+                                                                <div className='pb-2 d-flex gap-2 border-bottom align-items-center'>
+                                                                    <img className='users-img rounded-circle border  border-success' style={{ cursor: "default" }} src={require('../Assets/user.png')} alt="user image" />
+                                                                    <span className='fw-bold' style={{ fontSize: "0.8rem" }}>{activeUser.name}</span>
+                                                                    <span style={{ fontSize: "0.7rem", }} className='text-success ms-auto'>Active</span>
+                                                                </div>
+                                                            )
+                                                        }
                                                         <div className='mt-1'>
-                                                            <span style={{ fontSize: "0.9rem" }} className='mb-2'>Other Accounts</span>
+                                                            <span style={{ fontSize: "0.9rem" }} className='mb-2'>Available Accounts</span>
                                                             {usersList.map(user => (
-                                                                <div className='pb-1 mt-1 d-flex gap-2 border-bottom align-items-center' style={{cursor:"pointer"}} onClick={() => myFun("login", user
-                                                                )}>
-                                                                <img className='users-img rounded-circle' src={require('../Assets/user.png')} alt="user image"  />
-                                                                <span style={{ fontSize: "0.8rem", }}>{user.name}</span>
-                                                            </div>
+                                                                <div className='pb-1 mt-1 d-flex gap-2 border-bottom align-items-center' style={{ cursor: "pointer" }} onClick={() => {myFun("login", user);navigate('/');setShow(val => !val)}}>
+                                                                    <img className='users-img rounded-circle' src={require('../Assets/user.png')} alt="user" />
+                                                                    <span style={{ fontSize: "0.8rem", }}>{user.name}</span>
+                                                                </div>
                                                             ))}
                                                         </div>
-                                                        <div className='mt-2' style={{cursor:"pointer"}} onClick={() => {
-                                                                navigate('/signup')
-                                                                setShow(val => !val)
-                                                            }}>
-                                                            <img className='users-img rounded-circle' src={require('../Assets/add-user.png')} alt="user image"  />
+                                                        <div className='mt-2' style={{ cursor: "pointer" }} onClick={() => {
+                                                            navigate('/signup')
+                                                            setShow(val => !val)
+                                                        }}>
+                                                            <img className='users-img rounded-circle' src={require('../Assets/add-user.png')} alt="user" />
                                                             <span style={{ fontSize: "0.8rem", }} className='ms-2'>Add account</span>
+                                                        </div>
+                                                        <div className='mt-2' style={{ cursor: "pointer" }} onClick={() => {
+                                                            myFun("logout")
+                                                            setShow(val => !val)
+                                                        }}>
+                                                            <img className='users-img rounded-circle' src={require('../Assets/logout.png')} alt="user" />
+                                                            <span style={{ fontSize: "0.8rem", }} className='ms-2'>Log out</span>
                                                         </div>
                                                     </>
                                                 }

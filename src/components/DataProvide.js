@@ -39,6 +39,7 @@ const reducer = (state, action) => {
         case "addUser":
             return {
                 ...state,
+                hasSignedUp:true,
                 usersList: [
                     ...state.usersList,
                     action.data
@@ -49,6 +50,12 @@ const reducer = (state, action) => {
                 ...state,
                 isLoggedIn : true,
                 activeUser : action.data,
+            }
+        case "logout":
+            return {
+                ...state,
+                isLoggedIn : false,
+                activeUser : undefined
             }
         default:
             return {
@@ -65,6 +72,7 @@ const DataContext = createContext();
 
 export default function DataProvider({ children }) {
     const initialData = {
+        hasSignedUp:false,
         isLoggedIn:false,
         totalItem:0,
         cartItems: [],
@@ -84,6 +92,7 @@ export default function DataProvider({ children }) {
     return (
         <DataContext.Provider value={
             {
+                hasSignedUp : state.hasSignedUp,
                 isLoggedIn : state.isLoggedIn,
                 totalItem : state.totalItem,
                 cartItems : state.cartItems,
