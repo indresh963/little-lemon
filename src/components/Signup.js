@@ -17,7 +17,9 @@ function Signup() {
     const onSubmit = (values,onsubmitprops)=>{
         const usr = {
             ...values,
-            img_src:'',
+            img_src : '',
+            id : usersList.length,
+            hasAdditionalInfo : false
         }
         myFun('addUser',usr);
         onsubmitprops.resetForm();
@@ -36,7 +38,7 @@ function Signup() {
         validationSchema
     })
 
-    const {myFun} = useDataProvider();
+    const {myFun, usersList} = useDataProvider();
     return (
         <div className='container my-5' id='login-page'>
             <div className='row justify-content-center'>

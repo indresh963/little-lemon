@@ -45,6 +45,23 @@ function Login() {
                                         </div>
                                     </div>
                                 </div>
+                                <div className='row mt-4 gap-2 details shadow p-2 rounded-2'>
+                                    <div className='col-12'><h4>User Details</h4></div>
+                                    <div className='col-12'>
+                                        <div className='row'>
+                                            <div className='col-6'><h5>Name</h5></div>
+                                            <div className='col-6'><p>{activeUser.name}</p></div>
+                                        </div>
+                                        <div className='row'>
+                                            <div className='col-6'><h5>Email</h5></div>
+                                            <div className='col-6'><p>{activeUser.email}</p></div>
+                                        </div>
+                                        <div className='row'>
+                                            <div className='col-6'><h5>Address</h5></div>
+                                            <div className='col-6'><p>Kantipuram phase-2 ganeshpur road chinhat lucknow</p></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </>
                         ) : (
                             <h4>You're not logged in</h4>

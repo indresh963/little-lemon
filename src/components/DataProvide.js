@@ -58,12 +58,15 @@ const reducer = (state, action) => {
                 activeUser : undefined
             }
         case "activeUser":
+            tempCartItems = [...state.usersList];
+            tempCartItems[state.activeUser.id] = {
+                ...tempCartItems[state.activeUser.id],
+                img_src : action.data
+            }
             return{
                 ...state,
-                activeUser:{
-                    ...state.activeUser,
-                    img_src : action.data
-                }
+                usersList : tempCartItems,
+                activeUser : tempCartItems[state.activeUser.id]
             }
         default:
             return {
@@ -87,7 +90,7 @@ export default function DataProvider({ children }) {
         orderItems: [],
         usersList:[],
         bookingDetails: {},
-        activeUser:undefined
+        activeUser:undefined,
     }
     const [state, dispatch] = useReducer(reducer, initialData);
     function myFun(role,info,sect){

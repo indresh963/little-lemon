@@ -74,7 +74,7 @@ function Nav() {
                                                             <span style={{ fontSize: "0.9rem" }} className='mb-2'>Available Accounts</span>
                                                             {usersList.map(user => (
                                                                 <div className='pb-1 mt-1 d-flex gap-2 border-bottom align-items-center' style={{ cursor: "pointer" }} onClick={() => {myFun("login", user);navigate('/');setShow(val => !val)}}>
-                                                                    <img className='users-img rounded-circle' src={require('../Assets/user.png')} alt="user" />
+                                                                    <img className='users-img rounded-circle' src={(user.img_src) ? user.img_src :  require('../Assets/user.png')} alt="user" />
                                                                     <span style={{ fontSize: "0.8rem", }}>{user.name}</span>
                                                                 </div>
                                                             ))}
