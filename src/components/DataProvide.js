@@ -57,6 +57,14 @@ const reducer = (state, action) => {
                 isLoggedIn : false,
                 activeUser : undefined
             }
+        case "activeUser":
+            return{
+                ...state,
+                activeUser:{
+                    ...state.activeUser,
+                    img_src : action.data
+                }
+            }
         default:
             return {
                 ...state,
@@ -96,9 +104,9 @@ export default function DataProvider({ children }) {
                 isLoggedIn : state.isLoggedIn,
                 totalItem : state.totalItem,
                 cartItems : state.cartItems,
-                orderItems :state.orderItems,
-                usersList :state.usersList,
-                bookingDetails :state.bookingDetails,
+                orderItems : state.orderItems,
+                usersList : state.usersList,
+                bookingDetails : state.bookingDetails,
                 activeUser : state.activeUser,
                 myFun
             }

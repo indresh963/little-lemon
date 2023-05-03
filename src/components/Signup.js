@@ -15,7 +15,11 @@ function Signup() {
     }
 
     const onSubmit = (values,onsubmitprops)=>{
-        myFun('addUser',values);
+        const usr = {
+            ...values,
+            img_src:'',
+        }
+        myFun('addUser',usr);
         onsubmitprops.resetForm();
         navigate('/login');
     }

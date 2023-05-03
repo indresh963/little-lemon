@@ -48,7 +48,7 @@ function Nav() {
                     </div>
                     <ul className='nav ms-auto gap-2 me-3'>
                         <li className='nav-item me-3 d-flex flex-column align-items-center' id='login-popup-parent'>
-                            <img onClick={() => setShow(val => !val)} id="user_img" className='rounded-circle' src={require('../Assets/user.png')} alt="user" />
+                            <img onClick={() => setShow(val => !val)} id="user_img" className='rounded-circle'  src={(isLoggedIn && activeUser.img_src) ? activeUser.img_src :  require('../Assets/user.png')} alt="user" />
                             {isLoggedIn && <span className='fw-bold d-block' style={{ fontSize: "0.8rem", color: "#495E57" }}>{activeUser.name}</span>}
                             {show && <div id="login-popup" className='d-flex flex-column pb-2'>
                                 <div className='px-3 py-2 shadow-sm d-flex justify-content-between' id='login-popup-header'>
@@ -64,7 +64,7 @@ function Nav() {
                                                         {
                                                             isLoggedIn && (
                                                                 <div className='pb-2 d-flex gap-2 border-bottom align-items-center'>
-                                                                    <img className='users-img rounded-circle border  border-success' style={{ cursor: "default" }} src={require('../Assets/user.png')} alt="user image" />
+                                                                    <img className='users-img rounded-circle border  border-success' style={{ cursor: "default" }}  src={activeUser.img_src ? activeUser.img_src :  require('../Assets/user.png')} alt="user image" />
                                                                     <span className='fw-bold' style={{ fontSize: "0.8rem" }}>{activeUser.name}</span>
                                                                     <span style={{ fontSize: "0.7rem", }} className='text-success ms-auto'>Active</span>
                                                                 </div>

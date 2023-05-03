@@ -215,11 +215,13 @@ footer p{
 /* user image  */
 #user_img{
   width: 32px;
+  height: 32px;
   border:0.2px solid var(--primary-blue);
   cursor: pointer;
 }
 .users-img{
   width:25px;
+  height: 25px;
   cursor: pointer;
 
 }
@@ -423,6 +425,25 @@ p.cart-price{
   z-index:1;
 }
 /* toast */
+
+/* my-account */
+#account-dp{
+  width:calc(10vw);
+  height:calc(10vw)
+}
+
+#user-account h4{
+  text-decoration: none;
+}
+
+#user-account p{
+  word-wrap: break-word;
+}
+
+#user-account .details{
+  background-image: linear-gradient(160deg, var(--white),var(--white),var(--white),var(--primary-blue));
+}
+/* my-account */
 @media(min-width:768px){
   header img{
     width:250px;
@@ -442,6 +463,12 @@ p.cart-price{
   }
 }
 
+@media(max-width:768px){
+  #account-dp{
+    width:calc(17vw);
+    height: calc(17vw);
+  }
+}
 @media (min-width:370px){
   .highlight .secondary-btn{
     margin-left: 0.8rem;
