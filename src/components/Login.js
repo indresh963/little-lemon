@@ -1,5 +1,6 @@
 import { memo, useRef } from 'react';
 import { useDataProvider } from './DataProvide';
+import AdditionalInfo from './AdditionalInfo';
 
 function Login() {
     const { activeUser, isLoggedIn, myFun } = useDataProvider();
@@ -10,7 +11,7 @@ function Login() {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-            myFun("activeUser", reader.result);
+            myFun("activeUser", reader.result,"img");
         }
 
     }
@@ -24,11 +25,11 @@ function Login() {
                     <input ref={imageUploader} style={{ display: "none" }} type='file' accept='image/*' onChange={handleChange} multiple />
                     {isLoggedIn && <p className='my-2'>Click to upload image</p>}
                 </div>
-                <div className='col-10 text-center '>
+                <div className='col-10 '>
                     {
                         isLoggedIn ? (
                             <>
-                                <div className='row gap-2 details shadow p-2 rounded-2'>
+                                <div className=' text-center  row gap-2 details shadow p-2 rounded-2'>
                                     <div className='col-12'><h4>User Details</h4></div>
                                     <div className='col-12'>
                                         <div className='row'>
@@ -39,32 +40,38 @@ function Login() {
                                             <div className='col-6'><h5>Email</h5></div>
                                             <div className='col-6'><p>{activeUser.email}</p></div>
                                         </div>
-                                        <div className='row'>
-                                            <div className='col-6'><h5>Address</h5></div>
-                                            <div className='col-6'><p>Kantipuram phase-2 ganeshpur road chinhat lucknow</p></div>
-                                        </div>
                                     </div>
                                 </div>
-                                <div className='row mt-4 gap-2 details shadow p-2 rounded-2'>
-                                    <div className='col-12'><h4>User Details</h4></div>
-                                    <div className='col-12'>
-                                        <div className='row'>
-                                            <div className='col-6'><h5>Name</h5></div>
-                                            <div className='col-6'><p>{activeUser.name}</p></div>
+                                {
+                                    activeUser.hasAdditionalInfo ? (
+                                        <div className=' text-center row mt-4 gap-2 details shadow p-2 rounded-2'>
+                                            <div className='col-12'><h4>Additional Info</h4></div>
+                                            <div className='col-12'>
+                                            <div className='row'>
+                                                    <div className='col-6'><h5>Mobile No.</h5></div>
+                                                    <div className='col-6'><p>{activeUser.mobile}</p></div>
+                                                </div>
+                                                <div className='row'>
+                                                    <div className='col-6'><h5>Address</h5></div>
+                                                    <div className='col-6'><p>{activeUser.address}</p></div>
+                                                </div>
+                                                <div className='row'>
+                                                    <div className='col-6'><h5>Landmark</h5></div>
+                                                    <div className='col-6'><p>{activeUser.landmark}</p></div>
+                                                </div>
+                                                <div className='row'>
+                                                    <div className='col-6'><h5>City</h5></div>
+                                                    <div className='col-6'><p>{activeUser.city}</p></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className='row'>
-                                            <div className='col-6'><h5>Email</h5></div>
-                                            <div className='col-6'><p>{activeUser.email}</p></div>
-                                        </div>
-                                        <div className='row'>
-                                            <div className='col-6'><h5>Address</h5></div>
-                                            <div className='col-6'><p>Kantipuram phase-2 ganeshpur road chinhat lucknow</p></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    ) :<AdditionalInfo/>
+                                }
                             </>
                         ) : (
+                            <div className='text-center'>
                             <h4>You're not logged in</h4>
+                            </div>
                         )
                     }
                 </div>

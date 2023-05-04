@@ -4,15 +4,15 @@ const reducer = (state, action) => {
     switch (action.type) {
         case "cartadd":
             tempCartItems = [...state.cartItems];
-            if(state.cartItems[action.data.id]){
+            if (state.cartItems[action.data.id]) {
                 tempCartItems[action.data.id].qty++;
-            }else{
+            } else {
                 tempCartItems[action.data.id] = action.data;
             }
-            console.log(tempCartItems,state.totalItem);
+            console.log(tempCartItems, state.totalItem);
             return {
                 ...state,
-                totalItem:state.totalItem + 1,
+                totalItem: state.totalItem + 1,
                 cartItems: tempCartItems
             }
         case "cartremove":
@@ -20,7 +20,7 @@ const reducer = (state, action) => {
             tempCartItems[action.data.id].qty--;
             return {
                 ...state,
-                totalItem:state.totalItem -1,
+                totalItem: state.totalItem - 1,
                 cartItems: tempCartItems
             }
         case "cartdelete":
@@ -28,18 +28,18 @@ const reducer = (state, action) => {
             tempCartItems[action.data.id] = undefined;
             return {
                 ...state,
-                totalItem:state.totalItem - action.data.qty,
+                totalItem: state.totalItem - action.data.qty,
                 cartItems: tempCartItems
             }
         case "orderonline":
             return {
                 ...state,
-                orderItems: [...state.orderItems,action.data]
+                orderItems: [...state.orderItems, action.data]
             }
         case "addUser":
             return {
                 ...state,
-                hasSignedUp:true,
+                hasSignedUp: true,
                 usersList: [
                     ...state.usersList,
                     action.data
@@ -48,26 +48,35 @@ const reducer = (state, action) => {
         case "login":
             return {
                 ...state,
-                isLoggedIn : true,
-                activeUser : action.data,
+                isLoggedIn: true,
+                activeUser: action.data,
             }
         case "logout":
             return {
                 ...state,
-                isLoggedIn : false,
-                activeUser : undefined
+                isLoggedIn: false,
+                activeUser: undefined
             }
         case "activeUser":
             tempCartItems = [...state.usersList];
-            tempCartItems[state.activeUser.id] = {
-                ...tempCartItems[state.activeUser.id],
-                img_src : action.data
+            if (action.part === "img") {
+                tempCartItems[state.activeUser.id] = {
+                    ...tempCartItems[state.activeUser.id],
+                    img_src: action.data
+                }
+            }else{
+                tempCartItems[state.activeUser.id] = {
+                    ...tempCartItems[state.activeUser.id],
+                    ...action.data,
+                    hasAdditionalInfo : true
+                }
             }
-            return{
+            return {
                 ...state,
-                usersList : tempCartItems,
-                activeUser : tempCartItems[state.activeUser.id]
+                usersList: tempCartItems,
+                activeUser: tempCartItems[state.activeUser.id]
             }
+
         default:
             return {
                 ...state,
@@ -83,34 +92,34 @@ const DataContext = createContext();
 
 export default function DataProvider({ children }) {
     const initialData = {
-        hasSignedUp:false,
-        isLoggedIn:false,
-        totalItem:0,
+        hasSignedUp: false,
+        isLoggedIn: false,
+        totalItem: 0,
         cartItems: [],
         orderItems: [],
-        usersList:[],
+        usersList: [],
         bookingDetails: {},
-        activeUser:undefined,
+        activeUser: undefined,
     }
     const [state, dispatch] = useReducer(reducer, initialData);
-    function myFun(role,info,sect){
+    function myFun(role, info, sect) {
         dispatch({
-            type : role,
-            data : info,
-            part : sect
+            type: role,
+            data: info,
+            part: sect
         })
     }
     return (
         <DataContext.Provider value={
             {
-                hasSignedUp : state.hasSignedUp,
-                isLoggedIn : state.isLoggedIn,
-                totalItem : state.totalItem,
-                cartItems : state.cartItems,
-                orderItems : state.orderItems,
-                usersList : state.usersList,
-                bookingDetails : state.bookingDetails,
-                activeUser : state.activeUser,
+                hasSignedUp: state.hasSignedUp,
+                isLoggedIn: state.isLoggedIn,
+                totalItem: state.totalItem,
+                cartItems: state.cartItems,
+                orderItems: state.orderItems,
+                usersList: state.usersList,
+                bookingDetails: state.bookingDetails,
+                activeUser: state.activeUser,
                 myFun
             }
         } >

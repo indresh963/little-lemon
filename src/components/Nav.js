@@ -64,7 +64,7 @@ function Nav() {
                                                         {
                                                             isLoggedIn && (
                                                                 <div className='pb-2 d-flex gap-2 border-bottom align-items-center'>
-                                                                    <img className='users-img rounded-circle border  border-success' style={{ cursor: "default" }}  src={activeUser.img_src ? activeUser.img_src :  require('../Assets/user.png')} alt="user image" />
+                                                                    <img className='users-img rounded-circle' style={{ cursor: "default" }}  src={activeUser.img_src ? activeUser.img_src :  require('../Assets/user.png')} alt="user image" />
                                                                     <span className='fw-bold' style={{ fontSize: "0.8rem" }}>{activeUser.name}</span>
                                                                     <span style={{ fontSize: "0.7rem", }} className='text-success ms-auto'>Active</span>
                                                                 </div>
