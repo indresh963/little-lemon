@@ -1,5 +1,6 @@
 import { memo, useState, useEffect } from 'react';
 import { useDataProvider } from './DataProvide';
+import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 function Cart() {
     const { cartItems, totalItem, myFun } = useDataProvider();
@@ -12,6 +13,7 @@ function Cart() {
         setTotal(to);
     }, [cartItems])
     let dis = 0;
+    const navigate = useNavigate();
     return (
         <>
             <div className="offcanvas offcanvas-start" id="basket" >
@@ -103,7 +105,11 @@ function Cart() {
                                 </div>
                             )
                         }
-                        <Button abled={totalItem === 0} className='main-btn mt-5 w-100'>
+                        <Button abled={totalItem === 0}
+                        onclick={() => {
+                            navigate('/orderOnline')
+                        }}
+                        className='main-btn mt-5 w-100'>
                             Order Now<i className=" ms-3 fa-solid fa-basket-shopping"></i>
                         </Button>
                     </div>

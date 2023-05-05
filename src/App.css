@@ -341,7 +341,7 @@ p.cart-price{
   display: inline-block;
 }
 
-.highlight a{
+.highlight a, #orderOnlineSection a{
   color: var(--primary-yellow);
 }
 /* Highlight */
@@ -430,12 +430,11 @@ p.cart-price{
   width:calc(10vw);
   height:calc(10vw)
 }
-
-#user-account h4{
+#user-account h4, #orderOnlineSection h4{
   text-decoration: none;
 }
 
-#user-account p{
+#user-account p, #orderOnlineSection p{
   word-wrap: break-word;
 }
 
