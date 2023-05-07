@@ -44,7 +44,7 @@ function Log() {
     return (
         <>
             {valid !== undefined ? (
-                valid ? navigate('/'): (
+                valid ? navigate('/account'): (
                     <div className="toast show">
                         <div className="toast-header">
                             <strong className="fs-5 text-danger me-auto">Error</strong>

@@ -442,6 +442,14 @@ p.cart-price{
   background-image: linear-gradient(160deg, var(--white),var(--white),var(--white),var(--primary-blue));
 }
 /* my-account */
+
+/* order Online */
+.orderSummary{
+  background-image: url(./Assets/lemon-bg.jpg);
+  background-repeat: no-repeat;
+  background-position: 35% 5%;
+}
+/* order Online */
 @media(min-width:768px){
   header img{
     width:250px;
@@ -480,5 +488,13 @@ p.cart-price{
 
   #login-page .fs{
     font-size: 1.2rem;
+  }
+
+  #orderOnlineSection p{
+    font-size:0.7rem ;
+  }
+
+  #orderOnlineSection h4{
+    font-size:1.5rem ;
   }
 }

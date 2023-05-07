@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { memo } from 'react';
 import Button from './Button';
 import { useDataProvider } from './DataProvide';
@@ -49,6 +49,7 @@ function Highlight() {
     ];
 
     const { myFun } = useDataProvider();
+    const navigate = useNavigate();
     return (
         <>
             <div className="highlight py-5">
@@ -68,7 +69,10 @@ function Highlight() {
                                                 <h5 className='price float-end'><b>${item.price}</b></h5>
                                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
                                                 <hr></hr>
-                                                <Button className="main-btn" >
+                                                <Button className="main-btn" onclick={()=>{
+                                                    myFun("directOrder",item);
+                                                    navigate('/orderOnline');
+                                                }} >
                                                     Order Now
                                                 </Button>
                                                 <Button className="secondary-btn" onclick={() => myFun("cartadd", item)}>

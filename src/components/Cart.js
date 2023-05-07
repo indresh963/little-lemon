@@ -105,13 +105,15 @@ function Cart() {
                                 </div>
                             )
                         }
-                        <Button abled={totalItem === 0}
-                        onclick={() => {
-                            navigate('/orderOnline')
-                        }}
-                        className='main-btn mt-5 w-100'>
+                        <button onClick={
+                            () => {
+                                myFun("orderFromCart",cartItems)
+                                navigate('/orderOnline')
+                            }
+                        } className='main-btn mt-5 w-100' disabled={totalItem === 0}
+                        data-bs-dismiss="offcanvas">
                             Order Now<i className=" ms-3 fa-solid fa-basket-shopping"></i>
-                        </Button>
+                        </button>
                     </div>
                 </div>
             </div>

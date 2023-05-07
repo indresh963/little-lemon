@@ -33,12 +33,12 @@ const reducer = (state, action) => {
         case "orderFromCart":
             return {
                 ...state,
-                orderItems: [...state.orderItems, action.data],
+                orderItems: [...state.orderItems, ...action.data],
                 cartItems : [],
                 totalItem : 0,
             }
         case "directOrder":
-            tempCartItems = [...state.cartItems];
+            tempCartItems = [...state.orderItems];
             if (state.orderItems[action.data.id]) {
                 tempCartItems[action.data.id].qty++;
             } else {
@@ -47,6 +47,11 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 orderItems: tempCartItems
+            }
+        case "orderDone":
+            return {
+                ...state,
+                orderItems : []
             }
         case "addUser":
             return {
