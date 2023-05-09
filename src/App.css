@@ -163,7 +163,15 @@ h2 {
   color: var(--highlight-first);
   text-transform: capitalize;
 }
-
+h3{
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1rem;
+  letter-spacing: 1px;
+  font-family: var(--secondary-font);
+  color: var(--primary-blue);
+  text-transform: capitalize;
+}
 h4 {
   font-size: 1.9rem;
   font-weight: 600;
@@ -525,6 +533,21 @@ form {
   width: calc(6rem + 10vh);
 }
 /* input-banner */
+/* menu  */
+
+#menu-logo{
+  width: calc(2rem + 10vh);
+}
+
+#cat-logo{
+  width: calc(2rem + 6vh);
+}
+.welcome-para{
+  font-family: var(--tertiary-font);
+  font-size: 0.8rem;
+  line-height: 1rem;
+}
+/* menu  */
 /* order Online */
 @media(min-width:768px) {
   header img {
