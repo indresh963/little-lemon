@@ -513,11 +513,11 @@ form {
   letter-spacing: 1.5px;
 }
 
-#input-banner-container p{
+#input-banner-container p:not(.modal p){
   font-family: var(--tertiary-font);
 }
 
-#input-banner-container p::first-letter{
+#input-banner-container p::first-letter:not(.modal p){
   font-weight: 600;
 }
 
@@ -568,6 +568,9 @@ form {
   #account-dp {
     width: calc(17vw);
     height: calc(17vw);
+  }
+  #input-banner #second{
+    border-top: 1px solid  #dee2e6;
   }
 }
 

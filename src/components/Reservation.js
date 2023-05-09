@@ -27,6 +27,7 @@ function Reservation() {
         mobile: Yup.string().matches(phoneRegExp, "Invalid mobile number").required("This field is required"),
         date: Yup.string().required("This field is required"),
         time: Yup.string().required("This field is required"),
+        occasion: Yup.string().required("This field is required"),
     })
 
     const formik = useFormik({
@@ -55,7 +56,7 @@ function Reservation() {
                             <div className='row justify-content-center align-items-center'>
                                 <div className='col-6'>
                                     <span className='reservation-heading'>Book Now!</span>
-                                    <p>Grab your table to enjoy Turkish,Italian and Greek delicacies with 
+                                    <p>Grab your table to enjoy Turkish,Italian and Greek delicacies with
                                         pleasing ambeince.
                                     </p>
                                 </div>
@@ -64,13 +65,12 @@ function Reservation() {
                                 </div>
                             </div>
                             <div className='row justify-content-center align-items-center'>
-                            <div className='col-6'>
+                                <div className='col-6'>
                                     <img src={require('../Assets/winelineart.jpg')} className='img-fluid rounded' alt='pic' />
                                 </div>
                                 <div className='col-6'>
-                                    <span className='reservation-heading'>Book Now!</span>
-                                    <p>Grab your table to enjoy Turkish,Italian and Greek delicacies with 
-                                        pleasing ambeince.
+                                    <span className='reservation-heading'>Event Oriented!</span>
+                                    <p>Select your party event and let the little lemon handle everything for you.
                                     </p>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@ function Reservation() {
                                 </div>
                                 <div>
                                     <label htmlFor='date' className='fs-sm form-label text-muted fw-bold'>Select Date</label>
-                                    <input type='date' name='date' id='date'
+                                    <input type='date' name='date' id='date' min={new Date().toJSON().split('T')[0]}
                                         {...formik.getFieldProps('date')} className='form-control' />
                                     {formik.touched.date && formik.errors.date ? <span className='text-danger' style={{ fontSize: "0.8rem" }}>{formik.errors.date}</span> : null}
 
@@ -107,6 +107,7 @@ function Reservation() {
                                 <div>
                                     <label htmlFor='occasion' className='fs-sm form-label text-muted fw-bold'>Select Occasion</label>
                                     <select id='occasion' name='occasion' {...formik.getFieldProps('occasion')} className='form-select'>
+                                        <option></option>
                                         <option>Anniversary</option>
                                         <option>Birthday</option>
                                         <option>Promotion</option>
@@ -119,7 +120,7 @@ function Reservation() {
                                 <span className='fs-sm text-muted fw-bold'>Select table size for number of seats</span>
                                 <div className='d-flex gap-sm-5 gap-3'>
                                     <div className='form-check'>
-                                        <input type='radio' name='dinners' id='2' className='form-check-input' />
+                                        <input type='radio' checked name='dinners' id='2' className='form-check-input' />
                                         <label htmlFor='2' className='form-check-label fs-sm text-muted fw-bold'>2</label>
                                     </div>
                                     <div className='form-check'>
@@ -158,8 +159,8 @@ function Reservation() {
                             </div>
                             <div className='modal-body'>
                                 <p>Dear <b>{modal.name}</b> your table at Little Lemon
-                                    has been booked for <b>{modal.date}</b> at <b>{modal.time}</b> we
-                                    are waiting eagerly to celebrate your <b>{modal.occasion}</b> night together.</p>
+                                    has been booked for <b>{modal.date}</b> at <b>{modal.time}</b>. we
+                                    are waiting eagerly to celebrate your <b>{modal.occasion}</b> event together.</p>
                             </div>
                         </div>
                     </div>
