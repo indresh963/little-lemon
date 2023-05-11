@@ -2,12 +2,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { memo } from 'react';
 import Button from './Button';
 import { useDataProvider } from './DataProvide';
-function Highlight({ heading, data, show, padding }) {
-    const { myFun } = useDataProvider();
+function Highlight({ heading, data, show, padding, id }) {
+    const { myFun, linkClick } = useDataProvider();
     const navigate = useNavigate();
     return (
         <>
-            <div className={"highlight "+ padding}>
+            <div className={"highlight "+ padding} id={id}>
                 <div className="container-fluid row justify-content-center">
                     <div className="col-10">
                         <h4>{heading}</h4>
@@ -27,6 +27,7 @@ function Highlight({ heading, data, show, padding }) {
                                                 <Button className="main-btn" onclick={() => {
                                                     myFun("directOrder", item);
                                                     navigate('/orderOnline');
+                                                    linkClick('orderonline1')
                                                 }} >
                                                     Order Now
                                                 </Button>
@@ -41,7 +42,7 @@ function Highlight({ heading, data, show, padding }) {
                         }
                     </div>
                     {show && <div className="col-10 pt-4 ">
-                        <Link to="/menu" className='d-flex align-items-center'>view menu <i className="fa-solid fa-arrow-right ms-2"></i></Link>
+                        <Link onClick={()=>linkClick("menu1")} to="/menu" className='d-flex align-items-center'>view menu <i className="fa-solid fa-arrow-right ms-2"></i></Link>
                     </div>}
                 </div>
             </div>

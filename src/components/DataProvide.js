@@ -95,12 +95,7 @@ const reducer = (state, action) => {
             }
 
         default:
-            return {
-                ...state,
-                bookingDetails: {
-                    ...state.bookingDetails,
-                }
-            }
+           return null;
 
     }
 }
@@ -115,7 +110,6 @@ export default function DataProvider({ children }) {
         cartItems: [],
         orderItems: [],
         usersList: [],
-        bookingDetails: {},
         activeUser: undefined,
     }
     const [state, dispatch] = useReducer(reducer, initialData);
@@ -126,6 +120,12 @@ export default function DataProvider({ children }) {
             part: sect
         })
     }
+
+    function linkClick(target){
+        let active = document.querySelector('.nav-link.active');
+        active.classList.remove('active');
+        document.getElementById(target).classList.add('active');
+    }
     return (
         <DataContext.Provider value={
             {
@@ -135,9 +135,9 @@ export default function DataProvider({ children }) {
                 cartItems: state.cartItems,
                 orderItems: state.orderItems,
                 usersList: state.usersList,
-                bookingDetails: state.bookingDetails,
                 activeUser: state.activeUser,
-                myFun
+                myFun,
+                linkClick
             }
         } >
             {children}

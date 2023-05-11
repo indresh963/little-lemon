@@ -138,8 +138,8 @@ a {
   font-size: 1.3rem;
 }
 
-a:hover:not(footer a, #login-popup a, #login-page a),
-a.active:not(footer a, #login-popup a, #login-page a) {
+a:hover:not(footer a, #login-popup a, #login-page a, #section-nav-parent ul.nav a),
+a.active:not(footer a, #login-popup a, #login-page a, #section-nav-parent ul.nav a) {
   color: var(--primary-yellow) !important;
 
 }
@@ -163,7 +163,8 @@ h2 {
   color: var(--highlight-first);
   text-transform: capitalize;
 }
-h3{
+
+h3 {
   font-size: 1.2rem;
   font-weight: 600;
   line-height: 1rem;
@@ -172,6 +173,7 @@ h3{
   color: var(--primary-blue);
   text-transform: capitalize;
 }
+
 h4 {
   font-size: 1.9rem;
   font-weight: 600;
@@ -507,11 +509,11 @@ form {
 
 /* reservation form  */
 /* input-banner */
-#input-banner{
+#input-banner {
   box-shadow: 0 0 3px;
 }
 
-#input-banner-container .reservation-heading{
+#input-banner-container .reservation-heading {
   font-size: 1.7rem;
   font-weight: 600;
   line-height: 2.2rem;
@@ -521,33 +523,77 @@ form {
   letter-spacing: 1.5px;
 }
 
-#input-banner-container p:not(.modal p){
+#input-banner-container p:not(.modal p) {
   font-family: var(--tertiary-font);
 }
 
-#input-banner-container p::first-letter:not(.modal p){
+#input-banner-container p::first-letter:not(.modal p) {
   font-weight: 600;
 }
 
-#input-banner-container #logo{
+#input-banner-container #logo {
   width: calc(6rem + 10vh);
 }
+
 /* input-banner */
 /* menu  */
 
-#menu-logo{
+#menu-logo {
   width: calc(2rem + 10vh);
 }
 
-#cat-logo{
+#cat-logo {
   width: calc(2rem + 6vh);
 }
-.welcome-para{
+
+.welcome-para {
   font-family: var(--tertiary-font);
   font-size: 0.8rem;
   line-height: 1rem;
 }
+
+
+#section-nav-parent ul.nav {
+  position: absolute;
+  bottom: 0%;
+  background-color: #fff;
+  box-shadow: 0 0 8px;
+}
+
+#section-nav-parent ul.nav a {
+  color: var(--primary-blue)
+}
+
+#section-nav-parent {
+  position: fixed;
+  bottom: 6%;
+  right: -90%;
+  z-index: 1;
+}
+
 /* menu  */
+
+/* about */
+#aboutBanner h3 {
+  font-size: 4.7rem;
+  font-weight: 900;
+  line-height: 4rem;
+  letter-spacing: 2px;
+  font-family: var(--primary-font);
+  color: var(--primary-blue);
+  text-transform: capitalize;
+  text-shadow: 0px 1px 3px;
+}
+
+#aboutBanner{
+  background-image: url(./Assets/lemons-bg.jpg);
+  background-position: 70% 38%;
+}
+
+#gallery{
+  background-color: ghostwhite;
+}
+/* about */
 /* order Online */
 @media(min-width:768px) {
   header img {
@@ -575,16 +621,24 @@ form {
     padding-bottom: 2rem;
   }
 
-  #input-banner #first{
-    padding-right:1.5rem ;
+  #input-banner #first {
+    padding-right: 1.5rem;
   }
 
-  #input-banner #second{
-    padding-left:1.5rem ;
-    border-left: 1px solid  #dee2e6;
+  #input-banner #second {
+    padding-left: 1.5rem;
+    border-left: 1px solid #dee2e6;
   }
 
   /* banner-input */
+}
+
+@media(max-width:1244px){
+  #aboutBanner h3{
+    font-size:4rem ;
+    font-weight:800 ;
+    line-height:2.9rem ;
+  }
 }
 
 @media(max-width:768px) {
@@ -592,8 +646,20 @@ form {
     width: calc(17vw);
     height: calc(17vw);
   }
-  #input-banner #second{
-    border-top: 1px solid  #dee2e6;
+
+  #input-banner #second {
+    border-top: 1px solid #dee2e6;
+  }
+
+  #section-nav-parent {
+    right: -79%;
+    bottom: 3%;
+  }
+
+  #aboutBanner h3{
+    font-size:3.8rem ;
+    font-weight:700 ;
+    line-height:2.7rem ;
   }
 }
 
@@ -618,5 +684,11 @@ form {
 
   #orderOnlineSection h4 {
     font-size: 1.5rem;
+  }
+
+  #aboutBanner h3{
+    font-size:3rem ;
+    font-weight:600 ;
+    line-height:2rem ;
   }
 }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import pic from '../Assets/lil-lemon.jpg'
 
 function Orderonline() {
-    const { orderItems, isLoggedIn, activeUser, myFun } = useDataProvider();
+    const { orderItems, isLoggedIn, activeUser, myFun, linkClick } = useDataProvider();
     const [totalItems, setTotalItems] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
     let dis = 0;
@@ -172,7 +172,7 @@ function Orderonline() {
                                                         <div className='col-10 px-0'>
                                                             <h4>You've not given your delivery address</h4>
                                                             <p className='fw-bold'>
-                                                                Add your <Link to='/account'>additional info</Link> to complete your order.
+                                                                Add your <Link onClick={()=>linkClick('account1')} to='/account'>additional info</Link> to complete your order.
                                                             </p>
                                                         </div>
                                                     </div>
@@ -211,7 +211,7 @@ function Orderonline() {
                                         <p className='mb-0'>Order some declicious food here, Checkout our menu</p>
                                     </div>
                                     <div className='col-md-2 col-3 text-center'>
-                                        <Link to='/menu'>View Menu</Link>
+                                        <Link onClick={()=>linkClick("menu1")} to='/menu'>View Menu</Link>
                                     </div>
                                 </div>
                                 <div className='row px-0 mt-2 align-items-center justify-content-center'>
@@ -219,7 +219,7 @@ function Orderonline() {
                                         <p className='mb-0'>Know more about our food and business</p>
                                     </div>
                                     <div className='col-md-2 col-3 text-center'>
-                                        <Link to='/about'>Learn More</Link>
+                                        <Link onClick={()=>linkClick("about1")} to='/about'>Learn More</Link>
                                     </div>
                                 </div>
                             </div>

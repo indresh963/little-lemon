@@ -6,7 +6,7 @@ import google from '../Assets/google-icon.svg'
 import Facebook from '../Assets/facebook-icon.svg'
 import { useDataProvider } from './DataProvide';
 function Log() {
-    const { usersList,myFun } = useDataProvider();
+    const { usersList,myFun, linkClick } = useDataProvider();
     const [valid, setValid] = useState()
     const navigate = useNavigate();
     const authenticate = useCallback(
@@ -44,7 +44,10 @@ function Log() {
     return (
         <>
             {valid !== undefined ? (
-                valid ? navigate('/account'): (
+                valid ? (()=>{
+                    navigate('/account')
+                    linkClick('account1')
+                })(): (
                     <div className="toast show">
                         <div className="toast-header">
                             <strong className="fs-5 text-danger me-auto">Error</strong>

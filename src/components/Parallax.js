@@ -1,8 +1,10 @@
 import { useNavigate} from 'react-router-dom';
 import {memo} from 'react';
 import Button from './Button';
+import { useDataProvider } from './DataProvide';
 function Parallax() {
     const navigate = useNavigate();
+    const {linkClick } = useDataProvider();
     return (
         <div id="parallax">
             <div className="container">
@@ -12,7 +14,9 @@ function Parallax() {
                             Let food be thy medicine and medicine be thy food.
                         </q></h2>
                         <h5 className="mb-3">Learn more about our food, services and business by clicking the button below</h5>
-                        <Button className="main-btn" onclick={()=> navigate('/about')}>
+                        <Button className="main-btn" onclick={()=>{
+                            linkClick("about1");
+                            navigate('/about')}}>
                             Learn more
                         </Button>
                     </div>

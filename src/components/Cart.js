@@ -3,7 +3,7 @@ import { useDataProvider } from './DataProvide';
 import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 function Cart() {
-    const { cartItems, totalItem, myFun } = useDataProvider();
+    const { cartItems, totalItem, myFun, linkClick } = useDataProvider();
     const [total, setTotal] = useState(0);
     useEffect(() => {
         let to = 0;
@@ -109,6 +109,7 @@ function Cart() {
                             () => {
                                 myFun("orderFromCart",cartItems)
                                 navigate('/orderOnline')
+                                linkClick('orderonline1')
                             }
                         } className='main-btn mt-5 w-100' disabled={totalItem === 0}
                         data-bs-dismiss="offcanvas">

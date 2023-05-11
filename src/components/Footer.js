@@ -1,8 +1,10 @@
 import icon from '../Assets/yellow_monochrome.png'
 import {Link} from 'react-router-dom'
 import {memo} from 'react';
+import { useDataProvider } from './DataProvide';
 
 function Footer() {
+    const {linkClick } = useDataProvider();
     return (
         <footer className='border border-top border-dashed pt-4'>
             <div className='container-fluid'>
@@ -14,12 +16,12 @@ function Footer() {
 
                         <ul className=" row">
                             <li className='col-12'><h5 className='mb-0'>Doormat Navigation</h5></li>
-                            <li className='col-lg-4 col-6'><Link className=' active' to="/">Home</Link></li>
-                            <li className='col-lg-4 col-6'><Link to="/about">About</Link></li>
-                            <li className='col-lg-4 col-6'><Link to="/menu">Menu</Link></li>
-                            <li className='col-lg-4 col-6'><Link to="/reservation">Reservation</Link></li>
-                            <li className='col-lg-4 col-6'><Link to="/orderOnline">Order Online</Link></li>
-                            <li className='col-lg-4 col-6'><Link to="/account">My account</Link></li>
+                            <li className='col-lg-4 col-6'><Link onClick={()=>linkClick("home1")} to="/">Home</Link></li>
+                            <li className='col-lg-4 col-6'><Link onClick={()=>linkClick("about1")} to="/about">About</Link></li>
+                            <li className='col-lg-4 col-6'><Link onClick={()=>linkClick("menu1")} to="/menu">Menu</Link></li>
+                            <li className='col-lg-4 col-6'><Link  onClick={()=>linkClick("reservation1")} to="/reservation">Reservation</Link></li>
+                            <li className='col-lg-4 col-6'><Link onClick={()=>linkClick("orderonline1")} to="/orderOnline">Order Online</Link></li>
+                            <li className='col-lg-4 col-6'><Link onClick={()=>linkClick("account1")} to="/account">My account</Link></li>
                         </ul>
                     </div>
                     <div className="col-sm-4 col-8 mt-sm-0  mt-3 ">
