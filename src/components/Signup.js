@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useState, useCallback } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -6,6 +6,7 @@ import google from '../Assets/google-icon.svg'
 import Facebook from '../Assets/facebook-icon.svg'
 import { useDataProvider } from './DataProvide';
 function Signup() {
+    const [userExist, setUserExist] = useState(false);
     const navigate = useNavigate();
     const initialValues = {
         name: '',
@@ -13,8 +14,20 @@ function Signup() {
         password: '',
         confirm_password: ''
     }
-
+    const authenticate = useCallback(
+        (usersList, data) => {
+            let { email, name } = data;
+            for (var user of usersList) {
+                if (email === user.email && name === user.name) {
+                    setUserExist(true);
+                    return true;
+                }
+            }
+            return false;
+        },[]
+    );
     const onSubmit = (values,onsubmitprops)=>{
+        if(authenticate(usersList,values)) return;
         const usr = {
             ...values,
             img_src : '',
@@ -41,6 +54,19 @@ function Signup() {
     const {myFun, usersList} = useDataProvider();
     return (
         <div className='container my-5' id='login-page'>
+            {
+            userExist ? (
+                <div className="toast show">
+                    <div className="toast-header">
+                        <strong className="fs-5 text-danger me-auto">Error</strong>
+                        <button type="button" className="btn-close" data-bs-dismiss="toast" onClick={()=> setUserExist(false)}></button>
+                    </div>
+                    <div className="toast-body">
+                        <span className='fs-6'>User already exists.</span>
+                    </div>
+                </div>
+            ): null
+        }
             <div className='row justify-content-center'>
                 <div className='col-lg-5 col-sm-7 col-9 shadow rounded-2 py-2 px-3 text-center'>
                     <span className='fs-4 fw-bold ' >Signup </span>
