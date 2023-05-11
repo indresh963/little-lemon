@@ -53,16 +53,32 @@ function About() {
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1440 113"><path fill="#f8f8ff" fill-opacity="1" d="M0,64L48,69.3C96,75,192,85,288,106.7C384,128,480,160,576,160C672,160,768,128,864,101.3C960,75,1056,53,1152,64C1248,75,1344,117,1392,138.7L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
             <div className='container my-4'>
-                <div className='row  justify-content-center gap-2'>
+                <div className='row  justify-content-center gap-5'>
                     <div className='col-10'>
                         <h3>Our services</h3>
                     </div>
                     <div className='col-10'>
-                        <p className='fw-bold'>
-                            Based in Chicago, Illinois, Little Lemon is a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.
-                            The chefs draw inspiration from Italian, Greek, and Turkish culture and have a menu of 12-15 items that they rotate seasonally.
-                        </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis quae laboriosam accusamus dolores sint consequuntur ea beatae, dolorum fugit corporis autem reprehenderit cupiditate. Molestiae est atque aliquid qui velit. Ea, libero dolor. Dolorem, perspiciatis dolore.</p>
+                        <div className='row justify-content-between gap-sm-0 gap-3'>
+                            <div className='col-sm-3 col-12 text-center'>
+                                <span className='fs-3'><i className="fa-solid fa-utensils p-4 rounded-circle service-icon"></i></span>
+                                <p className='mt-3'>serving as an open restaurant for 12 hrs</p>
+                            </div>
+                            <div className='col-sm-3 col-12 text-center'>
+                                <span className='fs-3 '><i className="fa-solid fa-truck p-4 rounded-circle shadow service-icon"></i></span>
+                                <p className='mt-3'>24X7 online food delivery services available</p>
+                            </div>
+                            <div className='col-sm-3 col-12 text-center'>
+                                <span className='fs-3 '><i className="fa-solid fa-check-to-slot p-4 rounded-circle service-icon"></i></span>
+                                <p className='mt-3'>online table booking system available</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className='container mt-3 mb-4'>
+                <div className='row  justify-content-center'>
+                    <div className='col-10'>
+                        <p className='fw-bold'>Do give us a chance to serve you. we will be delighted to have you as our custormer.have a good meal!!!</p>
                     </div>
                 </div>
             </div>
