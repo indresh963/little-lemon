@@ -1,4 +1,5 @@
 import { memo, useState,useEffect } from 'react';
+import { Scrollchor } from 'react-scrollchor';
 import Highlight from './Highlight';
 
 function Reservation() {
@@ -187,11 +188,11 @@ function Reservation() {
             <div className='container-fluid' id='section-nav-parent'>
                 <ul className={"nav flex-column align-items-center " + (toggle ? "rounded-pill" : "rounded-circle")} id='section-nav'>
                     {toggle && <>
-                        <li className='nav-item'><a href='#' className='nav-link'></a></li>
-                        <li className='nav-item'><a href='#beverages' className='nav-link'><i className="fa-solid fa-martini-glass-citrus fa-beat-fade"></i></a></li>
-                        <li className='nav-item'><a href='#fastfood' className='nav-link'><i className="fa-solid fa-pizza-slice fa-beat-fade"></i></a></li>
-                        <li className='nav-item'><a href='#maincourse' className='nav-link'><i className="fa-solid fa-bowl-rice fa-beat-fade"></i></a></li>
-                        <li className='nav-item'><a href='#desserts' className='nav-link'><i className="fa-sharp fa-solid fa-cookie-bite fa-beat-fade"></i></a></li>
+                        <li className='nav-item'><Scrollchor to='#' className='nav-link'></Scrollchor></li>
+                        <li className='nav-item'><Scrollchor  to='#beverages' className='nav-link'><i className="fa-solid fa-martini-glass-citrus fa-beat-fade"></i></Scrollchor></li>
+                        <li className='nav-item'><Scrollchor to='#fastfood' className='nav-link'><i className="fa-solid fa-pizza-slice fa-beat-fade"></i></Scrollchor></li>
+                        <li className='nav-item'><Scrollchor to='#maincourse' className='nav-link'><i className="fa-solid fa-bowl-rice fa-beat-fade"></i></Scrollchor></li>
+                        <li className='nav-item'><Scrollchor to='#desserts' className='nav-link'><i className="fa-sharp fa-solid fa-cookie-bite fa-beat-fade"></i></Scrollchor></li>
                     </>}
                     <li className='nav-item rounded-cricle' onClick={(e)=>{
                         e.preventDefault();
